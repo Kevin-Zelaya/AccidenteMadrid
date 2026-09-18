@@ -1,0 +1,15 @@
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\AccidentesDeMadrid.exe
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\AccidentesDeMadrid.deps.json
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\AccidentesDeMadrid.runtimeconfig.json
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\AccidentesDeMadrid.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\AccidentesDeMadrid.pdb
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.GeneratedMSBuildEditorConfig.editorconfig
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.AssemblyInfoInputs.cache
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.AssemblyInfo.cs
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.csproj.CoreCompileInputs.cache
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.sourcelink.json
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\refint\AccidentesDeMadrid.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.pdb
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\AccidentesDeMadrid.genruntimeconfig.cache
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\ref\AccidentesDeMadrid.dll
