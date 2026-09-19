@@ -1,0 +1,68 @@
+2026-09-19 10:39:36.432 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:42:08.756 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:42:09.159 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: {path}
+2026-09-19 10:42:09.168 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: {path}]
+2026-09-19 10:44:28.986 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:44:29.154 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: {path}
+2026-09-19 10:44:29.162 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: {path}]
+2026-09-19 10:45:09.318 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:45:09.483 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: {path}
+2026-09-19 10:45:09.490 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: {path}]
+2026-09-19 10:45:32.633 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:45:32.783 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: {path}
+2026-09-19 10:45:32.792 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: {path}]
+2026-09-19 10:45:57.946 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:45:58.121 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: {path}
+2026-09-19 10:45:58.130 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: {path}]
+2026-09-19 10:46:33.407 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:46:33.572 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: {path}
+2026-09-19 10:46:33.580 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: {path}]
+2026-09-19 10:47:54.988 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:47:55.147 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Dataccidentes_trafico_2024.csv
+2026-09-19 10:47:55.157 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Dataccidentes_trafico_2024.csv]
+2026-09-19 10:50:27.557 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:50:27.758 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Dataccidentes_trafico_2024.csv
+2026-09-19 10:50:27.766 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Dataccidentes_trafico_2024.csv]
+2026-09-19 10:52:00.539 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:52:00.717 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv"
+2026-09-19 10:52:00.725 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv"]
+2026-09-19 10:52:52.686 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:52:52.856 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv"
+2026-09-19 10:52:52.863 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv"]
+2026-09-19 10:53:40.993 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:53:41.145 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 10:54:35.514 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:54:35.660 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 10:55:45.812 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:55:45.991 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 10:58:27.245 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:58:27.438 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 10:59:35.877 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 10:59:36.030 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 10:59:36.072 [INF] [AccidentesDeMadrid.Repository.Load.CsvLoader] Columnas: num_expediente;fecha;hora;localizacion;numero;cod_distrito;distrito;tipo_accidente;estado_meteorológico;tipo_vehiculo;tipo_persona;rango_edad;sexo;cod_lesividad;lesividad;coordenada_x_utm;coordenada_y_utm;positiva_alcohol;positiva_droga
+2026-09-19 10:59:36.089 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] Error al cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+Con el siguiente mensaje de error Field at index '1' does not exist. You can ignore missing fields by setting MissingFieldFound to null.
+IReader state:
+   ColumnCount: 1
+   CurrentIndex: 1
+   HeaderRecord:
+["num_expediente;fecha;hora;localizacion;numero;cod_distrito;distrito;tipo_accidente;estado_meteorológico;tipo_vehiculo;tipo_persona;rango_edad;sexo;cod_lesividad;lesividad;coordenada_x_utm;coordenada_y_utm;positiva_alcohol;positiva_droga"]
+IParser state:
+   ByteCount: 0
+   CharCount: 473
+   Row: 2
+   RawRow: 2
+   Count: 1
+   RawRecord:
+2023S040280;04/01/2024;14:09:00;AVDA. NICETO ALCALA ZAMORA / AUTOV. M-11;3;16;HORTALEZA;Colisión fronto-lateral;Lluvia débil;Motocicleta > 125cc;Conductor;De 55 a 59 años;Hombre;2;Ingreso inferior o igual a 24 horas;444913;4481427;N;
+
+
+2026-09-19 11:01:57.728 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 11:01:57.875 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 11:01:57.909 [INF] [AccidentesDeMadrid.Repository.Load.CsvLoader] Columnas: num_expediente, fecha, hora, localizacion, numero, cod_distrito, distrito, tipo_accidente, estado_meteorológico, tipo_vehiculo, tipo_persona, rango_edad, sexo, cod_lesividad, lesividad, coordenada_x_utm, coordenada_y_utm, positiva_alcohol, positiva_droga
+2026-09-19 14:01:50.200 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 14:01:50.649 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 14:01:50.783 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] Error al cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+Con el siguiente mensaje de error The input string '' was not in a correct format.
+2026-09-19 14:12:16.890 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 14:12:17.152 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
