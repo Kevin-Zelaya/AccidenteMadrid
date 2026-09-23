@@ -13,5 +13,6 @@ public record AccidentType(string message)
     public static readonly AccidentType MultiVehicleCollision = new("Colisión múltiple");
     public static readonly AccidentType RoadDeparture = new("Solo salida de la vía");
     public static readonly AccidentType Rollover = new("Vuelco");
+    public static readonly AccidentType CliffFall = new("Despeñamiento");
     public static readonly AccidentType Other = new("Otro");
 }

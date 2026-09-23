@@ -23,6 +23,7 @@ public static class AccidentMapper
             ParseAccidentType(dto.AccidentType),
             ParseWeatherCondition(dto.WeatherCondition),
             ParseVehicleType(dto.VehicleType),
+            ParsePersonType(dto.PersonRole),
             dto.AgeRange,
             ParseGender(dto.gender),
             ParseInjurySeverity(dto.InjurySeverityCode),
@@ -41,19 +42,36 @@ public static class AccidentMapper
     // Condición climatica
     public static WeatherCondition? ParseWeatherCondition(string weatherCondition)
     {
-        return typeof(WeatherCondition) // Selecciona una clase, dandonos su tipo como un ejemplo.class
+        var result  = typeof(WeatherCondition) // Selecciona una clase, dandonos su tipo como un ejemplo.class
             .GetFields(BindingFlags.Public | BindingFlags.Static) // Se obtienen los campos que cumplan con lsos criterios de esr "Publico" o "estatico" y nos los retorna 
             .Select(f => f.GetValue(null) as WeatherCondition) // obtenemos el valor de esos campos #null es para estaticos y lo convierte a la clse especificada
             .FirstOrDefault(w => w.Message == weatherCondition);// filtramos, obtniendo el que cumpla con la cadena ue se le ha pasado
+        if (result == null) // Si resultado es null, quiere decir que no se encontro entre las posibles respuestas
+        {
+            if (weatherCondition != "") // si la cadena no está vacia se crea una nueva instancia del record
+                return new WeatherCondition(weatherCondition);
+            return WeatherCondition.Unknown; // Si la cadena está vacía se le asigna por defecto un valor
+        }
+
+        return result;
     }
     
     // tipo de accidente
-    public static AccidentType ParseAccidentType(string type)
+    public static AccidentType? ParseAccidentType(string type)
     {
-        return typeof(AccidentType)
+        var result = typeof(AccidentType)
             .GetFields(BindingFlags.Public | BindingFlags.Static)
             .Select(f => f.GetValue(null) as AccidentType)
-            .FirstOrDefault(a => a.message == type);
+            .FirstOrDefault(a => a?.message == type);
+
+        if (result == null)
+        {
+            if (type != "")
+                return new AccidentType(type);
+            return AccidentType.Other;
+        }
+
+        return result;
     }
     
     // Condición climatica
@@ -67,19 +85,36 @@ public static class AccidentMapper
 
     public static VehicleType? ParseVehicleType(string vehicleType)
     {
-        return typeof(VehicleType)
+        var result = typeof(VehicleType)
             .GetFields(BindingFlags.Public | BindingFlags.Static)
             .Select(f => f.GetValue(null) as VehicleType)
             .FirstOrDefault(v => v.Message == vehicleType);
+        if(result == null)
+            return new VehicleType(vehicleType);
+        return result;
+    }public static PersonType? ParsePersonType(string role)
+    {
+        return typeof(PersonType)
+            .GetFields(BindingFlags.Public | BindingFlags.Static)
+            .Select(f => f.GetValue(null) as PersonType)
+            .FirstOrDefault(v => v.Message == role);
     }
     public static InjurySeverity? ParseInjurySeverity(string code)
     {
+        if (code == "")
+            return InjurySeverity.Unknown; // Si la cadena está vacía se le asigna por defecto un valor
         if (!short.TryParse(code, out var iS))
             return null;
-        return typeof(InjurySeverity)
+        var result =  typeof(InjurySeverity)
             .GetFields(BindingFlags.Public | BindingFlags.Static)
             .Select(f => f.GetValue(null) as InjurySeverity)
             .FirstOrDefault(i => i.Code == iS);
+        if (result == null) // Si resultado es null, quiere decir que no se encontro entre las posibles respuestas
+        {
+            return InjurySeverity.Unknown;
+            
+        }
+        return result;
     }
 
     public static bool ParseAlcoholPositive(string message)

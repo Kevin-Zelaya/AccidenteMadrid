@@ -72,3 +72,14 @@ D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeM
 D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\obj\Debug\net10.0\Accident.BE9FEAA5.Up2Date
 D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Apache.Arrow.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Microsoft.Data.Analysis.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Microsoft.ML.DataView.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\System.Numerics.Tensors.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Castle.Core.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Moq.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\System.Diagnostics.EventLog.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
+D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll

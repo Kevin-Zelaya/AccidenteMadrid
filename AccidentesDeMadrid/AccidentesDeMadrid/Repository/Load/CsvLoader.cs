@@ -25,7 +25,6 @@ public class CsvLoader : ICsvLoader, ITransientService
 
     public async Task<IEnumerable<Accident>> LoadCsv(string path)
     {
-        _logger.LogDebug("[CSV-LOADER] Intentando cargar el csv en la ruta: {path}", path);
     
         /// comprobamos si existe el archivo
         if (!Path.Exists(path))

@@ -2,6 +2,7 @@
 using AccidentesDeMadrid.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace AccidentesDeMadrid.Dependency;
 
@@ -23,12 +24,19 @@ public class DependencyProvider
         // Configuramos Serilog utilizando appsettings.json.
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(AppConfig.Config)
-            .CreateLogger();
+            .WriteTo.Console(
+                theme: LogTheme.Theme,
+                outputTemplate:
+                "{Timestamp:HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
+            )
+            .CreateLogger(); // ← aquí
         Log.Logger.Debug("PRUEBA DIRECTA DE SERILOG");
         services.AddLogging(logging =>
         {
             logging.AddSerilog(Log.Logger);
         });
+        /// Rutas de los csv para uso en el repositorio
+        services.AddSingleton(AppConfig.CsvsPaths);
         
         /// Las clases que implementen la interfaz seran escaneadas
         /// seran inyectadas con el respectivo ciclo de vida

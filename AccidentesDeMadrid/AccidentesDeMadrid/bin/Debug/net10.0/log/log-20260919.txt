@@ -66,3 +66,70 @@ IParser state:
 Con el siguiente mensaje de error The input string '' was not in a correct format.
 2026-09-19 14:12:16.890 [DBG] [] PRUEBA DIRECTA DE SERILOG
 2026-09-19 14:12:17.152 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 22:17:34.617 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:17:35.132 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:17:35.142 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Intentando obtener los datos desde el servicio.
+2026-09-19 22:19:26.647 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:19:26.922 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:19:26.939 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Intentando obtener los datos desde el servicio.
+2026-09-19 22:21:20.545 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:21:20.864 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:21:20.881 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Intentando obtener datos de los archivos csv
+2026-09-19 22:21:20.899 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-19 22:21:21.221 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 22:21:21.314 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-19 22:21:21.320 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv
+2026-09-19 22:21:21.326 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv]
+2026-09-19 22:21:21.333 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-19 22:21:21.339 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv
+2026-09-19 22:21:21.344 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv]
+2026-09-19 22:21:21.354 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Intentando obtener los datos desde el servicio.
+2026-09-19 22:21:21.359 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo todos los registros
+2026-09-19 22:22:04.785 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:22:05.060 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:22:05.076 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Intentando obtener datos de los archivos csv
+2026-09-19 22:22:05.095 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-19 22:22:05.109 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 22:22:05.165 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-19 22:22:05.170 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv
+2026-09-19 22:22:05.175 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv]
+2026-09-19 22:22:05.182 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-19 22:22:05.187 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv
+2026-09-19 22:22:05.192 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv]
+2026-09-19 22:22:05.200 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Intentando obtener los datos desde el servicio.
+2026-09-19 22:22:05.205 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo todos los registros
+2026-09-19 22:23:32.587 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:23:32.836 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:23:32.846 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Intentando obtener datos de los archivos csv
+2026-09-19 22:23:32.860 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-19 22:23:32.871 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 22:23:32.924 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-19 22:23:32.928 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv
+2026-09-19 22:23:32.933 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv]
+2026-09-19 22:23:32.940 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-19 22:23:32.946 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv
+2026-09-19 22:23:32.951 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv]
+2026-09-19 22:23:32.962 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Intentando obtener los datos desde el servicio.
+2026-09-19 22:23:32.968 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo todos los registros
+2026-09-19 22:24:44.711 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:24:44.949 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:24:44.959 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Intentando obtener datos de los archivos csv
+2026-09-19 22:24:44.973 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-19 22:24:44.985 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 22:24:45.037 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-19 22:24:45.042 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv
+2026-09-19 22:24:45.047 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv]
+2026-09-19 22:24:45.053 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-19 22:24:45.057 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv
+2026-09-19 22:24:45.062 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv]
+2026-09-19 22:25:03.606 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-19 22:25:03.864 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-SERVICE] Cargando datos desde el service
+2026-09-19 22:25:03.875 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Intentando obtener datos de los archivos csv
+2026-09-19 22:25:03.890 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-19 22:25:03.901 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2024.csv
+2026-09-19 22:25:03.953 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-19 22:25:03.957 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv
+2026-09-19 22:25:03.962 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2025.csv]
+2026-09-19 22:25:03.970 [DBG] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-19 22:25:03.974 [DBG] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] Intentando cargar el csv en la ruta: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv
+2026-09-19 22:25:03.978 [ERR] [AccidentesDeMadrid.Repository.Load.CsvLoader] [CSV-LOADER] No se pudo cargar el archivo: D:\DAW\PrimerTrimestre\ES\Clase\AccidenteMadrid\AccidentesDeMadrid\AccidentesDeMadrid\bin\Debug\net10.0\Data\accidentes_trafico_2026.csv]

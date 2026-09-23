@@ -1,0 +1,98 @@
+2026-09-22 07:52:43.016 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 07:52:43.322 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:52:43.394 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:52:43.399 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:52:45.604 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:52:45.609 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:52:45.615 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:55:05.453 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 07:55:05.689 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:55:05.749 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:55:05.756 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:55:05.765 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:55:05.772 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:55:05.778 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:55:09.113 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:55:09.123 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:55:09.142 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:56:34.390 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 07:56:34.642 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:56:34.708 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:56:34.718 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:56:34.730 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:56:34.740 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:56:34.748 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 07:56:38.363 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 07:56:38.372 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 07:56:38.380 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:08:17.482 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:08:17.699 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:08:17.747 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:08:17.754 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:08:17.764 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:08:17.771 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:08:17.777 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:08:54.514 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:08:54.692 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:08:54.746 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:08:54.754 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:08:54.764 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:08:54.770 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:08:54.777 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:09:26.404 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:09:26.634 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:09:26.682 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:09:26.687 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:09:26.695 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:09:26.699 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:09:26.703 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:09:30.732 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:09:30.742 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:09:30.760 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:12:00.766 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:12:00.954 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:12:01.000 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:12:01.005 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:12:01.015 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:12:01.020 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:12:01.025 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:12:04.172 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:12:04.176 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:12:04.185 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:12:16.179 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:12:16.396 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:12:16.444 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:12:16.450 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:12:16.460 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:12:16.465 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:12:16.470 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:12:19.966 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:12:19.971 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:12:19.985 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:44:22.768 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:44:23.050 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:44:23.126 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:44:23.135 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:44:23.145 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:44:23.152 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:44:23.158 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:44:26.876 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:44:26.882 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:44:26.888 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:45:32.603 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 08:45:32.821 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:45:32.897 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:45:32.905 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 08:45:32.918 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2024
+2026-09-22 08:45:32.926 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2025
+2026-09-22 08:45:32.934 [INF] [AccidentesDeMadrid.Repository.CSVAccidentRepository] [CSV-REPOSITORY] Obteniendo archivo csv del año: 2026
+2026-09-22 09:03:06.123 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 09:20:30.329 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 09:39:05.747 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 10:11:27.568 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 10:23:43.494 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 10:36:40.825 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 10:40:35.478 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 11:43:39.050 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 12:28:44.227 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-22 12:33:38.214 [DBG] [] PRUEBA DIRECTA DE SERILOG
