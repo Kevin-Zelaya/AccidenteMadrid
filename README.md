@@ -7,12 +7,13 @@ Práctica sobre el acceso a datos y el manejo de colecciones. En esta práctica 
 Debemos procesar tres archivos CSV con datos reales sobre accidentes de tráfico en Madrid. Para ello, deberemos en primer lugar dar estructura a los datos provenientes del exterior. Esto se realizará mediante colecciones (listas y arrays) o de forma tabular, como en el caso de los DataFrames.
 
 Dentro de los objetivos a cumplir dentro de la aplicación tenemos:
- -Leer los 3 ficheros CSV
- -Combinar los datos en una sola colección
- -Realizar 30 consultas LINQ sobre el conjunto combinado
- -Realizar las mismas 30 consultas usando DataFrames
- -Medir y mostrar los tiempos de ejecución de cada operación
- -Optimizar el rendimiento total del programa usando los recursos del sistema disponibles (debes justificar tus decisiones)
+
+- [x] Leer los 3 ficheros CSV.
+- [x] Combinar los datos en una sola colección.
+- [x] Realizar 30 consultas LINQ sobre el conjunto combinado.
+- [x] Realizar las mismas 30 consultas usando DataFrames.
+- [x] Medir y mostrar los tiempos de ejecución de cada operación.
+- [x] Optimizar el rendimiento total del programa usando los recursos del sistema disponibles y justificar las decisiones tomadas.
 
 ## Estructura del proyecto
 
