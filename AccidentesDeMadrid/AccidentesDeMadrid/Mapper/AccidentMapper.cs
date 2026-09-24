@@ -90,7 +90,7 @@ public static class AccidentMapper
             .Select(f => f.GetValue(null) as VehicleType)
             .FirstOrDefault(v => v.Message == vehicleType);
         if(result == null)
-            return new VehicleType(vehicleType);
+            return new VehicleType(vehicleType); 
         return result;
     }public static PersonType? ParsePersonType(string role)
     {

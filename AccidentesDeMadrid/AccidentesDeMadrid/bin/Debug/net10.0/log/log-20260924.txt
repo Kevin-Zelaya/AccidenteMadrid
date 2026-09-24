@@ -26,3 +26,18 @@
 2026-09-24 13:21:11.519 [DBG] [] PRUEBA DIRECTA DE SERILOG
 2026-09-24 13:21:11.786 [INF] [AccidentesDeMadrid.Service.IAccidentAnalizer] [LINQ-ANALIZER] Intentando cargar datos desde el analizer.
 2026-09-24 13:21:14.879 [INF] [AccidentesDeMadrid.Repository.CsvDataframeRepository] [DATAFRAME-REPOSITORY] Intentando cargar datos desde el repositorio.
+2026-09-24 15:19:17.685 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-24 15:19:17.825 [INF] [AccidentesDeMadrid.Service.IAccidentAnalizer] [LINQ-ANALIZER] Intentando cargar datos desde el analizer.
+2026-09-24 15:19:20.788 [INF] [AccidentesDeMadrid.Repository.CsvDataframeRepository] [DATAFRAME-REPOSITORY] Intentando cargar datos desde el repositorio.
+2026-09-24 18:58:11.905 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-24 18:58:12.448 [INF] [AccidentesDeMadrid.Service.IAccidentAnalizer] [LINQ-ANALIZER] Intentando cargar datos desde el analizer.
+2026-09-24 18:58:16.952 [INF] [AccidentesDeMadrid.Repository.CsvDataframeRepository] [DATAFRAME-REPOSITORY] Intentando cargar datos desde el repositorio.
+2026-09-24 21:24:38.324 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-24 21:24:39.043 [INF] [AccidentesDeMadrid.Service.IAccidentAnalizer] [LINQ-ANALIZER] Intentando cargar datos desde el analizer.
+2026-09-24 21:24:44.187 [INF] [AccidentesDeMadrid.Repository.CsvDataframeRepository] [DATAFRAME-REPOSITORY] Intentando cargar datos desde el repositorio.
+2026-09-24 22:21:29.137 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-24 22:21:29.546 [INF] [AccidentesDeMadrid.Service.IAccidentAnalizer] [LINQ-ANALIZER] Intentando cargar datos desde el analizer.
+2026-09-24 22:21:35.593 [INF] [AccidentesDeMadrid.Repository.CsvDataframeRepository] [DATAFRAME-REPOSITORY] Intentando cargar datos desde el repositorio.
+2026-09-24 22:26:58.713 [DBG] [] PRUEBA DIRECTA DE SERILOG
+2026-09-24 22:26:59.081 [INF] [AccidentesDeMadrid.Service.IAccidentAnalizer] [LINQ-ANALIZER] Intentando cargar datos desde el analizer.
+2026-09-24 22:27:04.154 [INF] [AccidentesDeMadrid.Repository.CsvDataframeRepository] [DATAFRAME-REPOSITORY] Intentando cargar datos desde el repositorio.

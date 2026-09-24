@@ -1,7 +1,6 @@
 ﻿using AccidentesDeMadrid.Interfaces;
 using AccidentesDeMadrid.Repository.Load;
 using Deedle;
-using Microsoft.Data.Analysis;
 using Microsoft.Extensions.Logging;
 
 namespace AccidentesDeMadrid.Repository;

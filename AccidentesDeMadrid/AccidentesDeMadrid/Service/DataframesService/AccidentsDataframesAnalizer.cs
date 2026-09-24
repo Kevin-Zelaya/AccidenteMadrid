@@ -3,7 +3,6 @@ using AccidentesDeMadrid.Entity.Enum;
 using AccidentesDeMadrid.Interfaces;
 using AccidentesDeMadrid.Repository;
 using Deedle;
-using Microsoft.Data.Analysis;
 
 namespace AccidentesDeMadrid.Service;
 
@@ -25,7 +24,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         await _repository.LoadData();
     }
     /// <summary> Total de accidentes </summary>
-    public int GetTotalAccidentsAsync()
+    public int GetTotalAccidents()
     {
         //Task.Delay(350).Wait();
         return _repository
@@ -34,7 +33,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
     }
     
     /// <summary> Accidentes por distritos </summary> *
-    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictAsync()
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrict()
     {
         var data = _repository.GetALL();
         
@@ -52,7 +51,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary> Accidentes por tipo </summary> *
-    public IEnumerable<(string Type, int Total)> GetAccidentsByTypeAsync()
+    public IEnumerable<(string Type, int Total)> GetAccidentsByType()
     {
         var data = _repository.GetALL();
 
@@ -77,7 +76,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Accidentes por ocndición climatica</summary> *
-    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeatherAsync()
+    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeather()
     {
         var data = _repository.GetALL();
 
@@ -102,7 +101,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Obtener accidentes por sexo</summary> *
-    public IEnumerable<(string Sex, int Total)> GetAccidentsBySexAsync()
+    public IEnumerable<(string Sex, int Total)> GetAccidentsBySex()
     {
         var data = _repository.GetALL();
 
@@ -128,7 +127,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
 
     }
     /// <summary>Obtenerlos por rango de edad</summary> *
-    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRangeAsync()
+    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRange()
     {
         var data = _repository.GetALL();
 
@@ -153,7 +152,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Positivos en alcohol</summary> *
-    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositivesAsync()
+    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositives()
     {
         var data = _repository.GetALL();
 
@@ -178,7 +177,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Posititvos en drogas</summary> *
-    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositivesAsync()
+    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositives()
     {
         var data = _repository.GetALL();
 
@@ -203,7 +202,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Por día de la semana</summary> *
-    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeekAsync()
+    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeek()
     {
         var data = _repository.GetALL();
 
@@ -228,7 +227,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Por mes</summary> *
-    public IEnumerable<(int Month, int Total)> GetAccidentsByMonthAsync()
+    public IEnumerable<(int Month, int Total)> GetAccidentsByMonth()
     {
         var data = _repository.GetALL();
 
@@ -253,7 +252,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Hora con más accidentes</summary> *
-    public (TimeOnly Time, int Total) GetPeakAccidentHourAsync()
+    public (TimeOnly Time, int Total) GetPeakAccidentHour()
     {
         var data = _repository.GetALL();
 
@@ -279,7 +278,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         );
     }
     /// <summary>Tipo de lesión más frecuente</summary> *
-    public (string Injury, int Total) GetMostFrequentInjuriesAsync()
+    public (string Injury, int Total) GetMostFrequentInjuries()
     {
         var data = _repository.GetALL();
 
@@ -305,7 +304,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         );
     }
     /// <summary>Vehículo más frecuente en accidentes</summary> *
-    public (string Type, int Total) GetMostInvolvedVehicleTypeAsync()
+    public (string Type, int Total) GetMostInvolvedVehicleType()
     {
         var data = _repository.GetALL();
 
@@ -331,7 +330,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         );
     }
     /// <summary>Obtener accidentes en los que este involucrado un peaton</summary> *
-    public int GetPedestrianAccidentsAsync()
+    public int GetPedestrianAccidents()
     {
         var data = _repository.GetALL();
 
@@ -348,7 +347,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         return total;
     }
     /// <summary>Proporción mujeres hombre</summary> *
-    public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportionAsync()
+    public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportion()
     {
         var data = _repository.GetALL();
 
@@ -375,7 +374,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         );
     }
     /// <summary>Distrito con más peatones</summary> *
-    public (string Name, int Total)[] GetDistrictsWithMostPedestriansAsync()
+    public (string Name, int Total)[] GetDistrictsWithMostPedestrians()
     {
         var data = _repository.GetALL();
 
@@ -405,7 +404,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToArray();
     }
     /// <summary>Días de semana vs fines de semana</summary> *
-    public IEnumerable<(string Type, int Total)> GetWeekendVsWeekdayAsync()
+    public IEnumerable<(string Type, int Total)> GetWeekendVsWeekday()
     {
         var data = _repository.GetALL();
 
@@ -434,7 +433,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Promedio de accidentes por día</summary> *
-    public double GetAverageAccidentsPerDayAsync()
+    public double GetAverageAccidentsPerDay()
     {
         var data = _repository.GetALL();
 
@@ -453,7 +452,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         return totals.Values.Average();
     }
     /// <summary>Rango de edad más vulverable</summary> *
-    public IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRangesAsync()
+    public IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRanges()
     {
         var data = _repository.GetALL();
 
@@ -479,7 +478,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Accidentes positivos en drogas y alcohol</summary> *
-    public int GetAccidentsWithAlcoholAndDrugsAsync()
+    public int GetAccidentsWithAlcoholAndDrugs()
     {
         var data = _repository.GetALL();
 
@@ -497,7 +496,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
         return total;
     }
     /// <summary>Distrito con más positivos en alcohol</summary> *
-    public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositivesAsync()
+    public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositives()
     {
         var data = _repository.GetALL();
 
@@ -528,7 +527,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Obtener por código del distrito</summary> *
-    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCodeAsync()
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCode()
     {
         var data = _repository.GetALL();
 
@@ -553,7 +552,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Accidentes por año</summary> *
-    public IEnumerable<(int Year, int Total)> GetAccidentsByYearAsync()
+    public IEnumerable<(int Year, int Total)> GetAccidentsByYear()
     {
         var data = _repository.GetALL();
 
@@ -578,7 +577,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Evolución mensual en los años</summary> *
-    public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYearAsync()
+    public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYear()
     {
         var data = _repository.GetALL();
 
@@ -607,7 +606,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Distrito con más accidentes por año</summary> *
-    public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYearAsync()
+    public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYear()
     {
         var data = _repository.GetALL();
 
@@ -644,7 +643,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Evolución de accidentes con los años</summary> *
-    public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYearAsync()
+    public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYear()
     {
         var data = _repository.GetALL();
 
@@ -674,7 +673,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Tipo de lesión más frecuente</summary> *
-    public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYearAsync()
+    public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYear()
     {
         var data = _repository.GetALL();
 
@@ -707,7 +706,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Hora pico de cada año</summary> *
-    public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYearAsync()
+    public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYear()
     {
         var data = _repository.GetALL();
 
@@ -742,7 +741,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
     /// <summary>Lesión más frecuente por año</summary> *
-    public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYearAsync()
+    public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYear()
     {
         var data = _repository.GetALL();
 
@@ -782,7 +781,7 @@ public class AccidentsDataframesAnalizer : IDataframeAccidentAnalizer, ITransien
             .ToList();
     }
 
-    public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYearAsync()
+    public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYear()
     {
         var data = _repository.GetALL();
 

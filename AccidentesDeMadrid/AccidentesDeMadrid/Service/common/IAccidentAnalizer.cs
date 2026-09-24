@@ -5,71 +5,63 @@ namespace AccidentesDeMadrid.Service;
 
 public interface IAccidentAnalizer
 {
-    int GetTotalAccidentsAsync();
+    int GetTotalAccidents();
     public Task LoadData();
-    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictAsync();
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrict();
 
-    public IEnumerable<(string Type, int Total)> GetAccidentsByTypeAsync();
+    public IEnumerable<(string Type, int Total)> GetAccidentsByType();
 
-    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeatherAsync();
+    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeather();
 
-    public IEnumerable<(string Sex, int Total)> GetAccidentsBySexAsync();
+    public IEnumerable<(string Sex, int Total)> GetAccidentsBySex();
 
-    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRangeAsync();
+    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRange();
 
-    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositivesAsync();
+    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositives();
 
-    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositivesAsync();
+    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositives();
 
-    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeekAsync();
+    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeek();
 
-    public IEnumerable<(int Month, int Total)> GetAccidentsByMonthAsync();
+    public IEnumerable<(int Month, int Total)> GetAccidentsByMonth();
 
-    public (TimeOnly Time, int Total) GetPeakAccidentHourAsync();
+    public (TimeOnly Time, int Total) GetPeakAccidentHour();
 
-    public (string Injury, int Total) GetMostFrequentInjuriesAsync(); //
+    public (string Injury, int Total) GetMostFrequentInjuries(); //
 
-    public (string Type, int Total) GetMostInvolvedVehicleTypeAsync();//
+    public (string Type, int Total) GetMostInvolvedVehicleType();//
 
-    int GetPedestrianAccidentsAsync(); //
+    int GetPedestrianAccidents(); //
 
-    public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportionAsync();
+    public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportion();
     
-    public (string Name, int Total)[] GetDistrictsWithMostPedestriansAsync();
+    public (string Name, int Total)[] GetDistrictsWithMostPedestrians();
 
-    public IEnumerable<(string Type, int Total)> GetWeekendVsWeekdayAsync();
+    public IEnumerable<(string Type, int Total)> GetWeekendVsWeekday();
     
+    public double GetAverageAccidentsPerDay();
     
-    
-    public double GetAverageAccidentsPerDayAsync();
-    
+    IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRanges();
 
-    
-    IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRangesAsync();
+    int GetAccidentsWithAlcoholAndDrugs();
 
-    
+    public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositives();
 
-    int GetAccidentsWithAlcoholAndDrugsAsync();
+    public IEnumerable<(string District, int Total)>  GetAccidentsByDistrictCode();
 
-    
+    public IEnumerable<(int Year, int Total)> GetAccidentsByYear();
 
-    public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositivesAsync();
+    public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYear();
 
-    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCodeAsync();
+    public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYear();
 
-    public IEnumerable<(int Year, int Total)> GetAccidentsByYearAsync();
+    public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYear();
 
-    public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYearAsync();
+    public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYear();
 
-    public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYearAsync();
+    public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYear();
 
-    public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYearAsync();
+    public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYear();
 
-    public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYearAsync();
-
-    public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYearAsync();
-
-    public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYearAsync();
-
-    public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYearAsync();
+    public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYear();
 }

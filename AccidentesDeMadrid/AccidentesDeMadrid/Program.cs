@@ -91,13 +91,13 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 1
     RunQuery(
         "Total de accidentes",
-        () => csvAnalizer.GetTotalAccidentsAsync(),
+        () => csvAnalizer.GetTotalAccidents(),
         result => Console.WriteLine($"Total: {result}")
         );
     // 2
     RunQuery(
         "Accidentes por distrito",
-        () => csvAnalizer.GetAccidentsByDistrictAsync(),
+        () => csvAnalizer.GetAccidentsByDistrict(),
         result =>
         {
             foreach (var r in result)
@@ -107,7 +107,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
         });// 3
     RunQuery(
         "Accidentes por tipo",
-        () => csvAnalizer.GetAccidentsByTypeAsync(),
+        () => csvAnalizer.GetAccidentsByType(),
         result =>
         {
             foreach (var r in result)
@@ -118,7 +118,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 4
     RunQuery(
         "Accidentes por estado meteorológico",
-        () => csvAnalizer.GetAccidentsByWeatherAsync(),
+        () => csvAnalizer.GetAccidentsByWeather(),
         result =>
         {
             foreach (var r in result)
@@ -129,7 +129,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 5
     RunQuery(
         "Accidentes por sexo",
-        () => csvAnalizer.GetAccidentsBySexAsync(),
+        () => csvAnalizer.GetAccidentsBySex(),
         result =>
         {
             foreach (var r in result)
@@ -140,7 +140,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 6
     RunQuery(
         "Accidentes por edad",
-        () => csvAnalizer.GetAccidentsByAgeRangeAsync(),
+        () => csvAnalizer.GetAccidentsByAgeRange(),
         result =>
         {
             foreach (var r in result)
@@ -151,7 +151,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 7
     RunQuery(
         "Positivos en alcohol",
-        () => csvAnalizer.GetAlcoholPositivesAsync(),
+        () => csvAnalizer.GetAlcoholPositives(),
         result =>
         {
             foreach (var r in result)
@@ -162,7 +162,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 8
     RunQuery(
         "Positivos en drogas",
-        () => csvAnalizer.GetDrugPositivesAsync(),
+        () => csvAnalizer.GetDrugPositives(),
         result =>
         {
             foreach (var r in result)
@@ -173,7 +173,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 9
     RunQuery(
         "Accidentes por día de la semana",
-        () => csvAnalizer.GetAccidentsByDayOfWeekAsync(),
+        () => csvAnalizer.GetAccidentsByDayOfWeek(),
         result =>
         {
             foreach (var r in result)
@@ -184,7 +184,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 10
     RunQuery(
         "Accidentes por mes",
-        () => csvAnalizer.GetAccidentsByMonthAsync(),
+        () => csvAnalizer.GetAccidentsByMonth(),
         result =>
         {
             foreach (var r in result)
@@ -195,31 +195,31 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 11
     RunQuery(
         "Hora con más accidentes",
-        () => csvAnalizer.GetPeakAccidentHourAsync(),
+        () => csvAnalizer.GetPeakAccidentHour(),
         result => Console.WriteLine($"Hora: {result.Time} Total: {result.Total}")
         );
     // 12
     RunQuery(
         "Lesiones más frecuentes",
-        () => csvAnalizer.GetMostFrequentInjuriesAsync(),
+        () => csvAnalizer.GetMostFrequentInjuries(),
         result => Console.WriteLine($"Lesión: {result.Injury} Total: {result.Total}")
         );
     // 13
     RunQuery(
         "Tipo de vehículo más inplicado",
-        () => csvAnalizer.GetMostInvolvedVehicleTypeAsync(),
+        () => csvAnalizer.GetMostInvolvedVehicleType(),
         result => Console.WriteLine($"Lesión: {result.Type} Total: {result.Total}")
         );
     // 14
     RunQuery(
         "Accidentes con peatones",
-        () => csvAnalizer.GetPedestrianAccidentsAsync(),
+        () => csvAnalizer.GetPedestrianAccidents(),
         result => Console.WriteLine($"Total: {result}")
         );
     // 15
     RunQuery(
         "Proporición homhre / mujer",
-        () => csvAnalizer.GetMaleFemaleProportionAsync(),
+        () => csvAnalizer.GetMaleFemaleProportion(),
         result =>
         {
             Console.WriteLine($"Hombres: {result.Male} {result.MalePercentage}%");
@@ -229,7 +229,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 16
     RunQuery(
         "Distritos con más peatonesr",
-        () => csvAnalizer.GetDistrictsWithMostPedestriansAsync(),
+        () => csvAnalizer.GetDistrictsWithMostPedestrians(),
         result =>
         {
             foreach (var r in result)
@@ -238,7 +238,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 17
     RunQuery(
         "Fin de semana vs entre semana",
-        () => csvAnalizer.GetWeekendVsWeekdayAsync(),
+        () => csvAnalizer.GetWeekendVsWeekday(),
         result =>
         {
             foreach (var r in result)
@@ -247,25 +247,25 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 18
     RunQuery(
         "Media de accidentes por día",
-        () => csvAnalizer.GetAverageAccidentsPerDayAsync(),
+        () => csvAnalizer.GetAverageAccidentsPerDay(),
         result => Console.WriteLine($"Promedio de accidentes: {result}")
             ); 
     // 19
     RunQuery(
         "Accidentes con alcohol + droga",
-        () => csvAnalizer.GetAccidentsWithAlcoholAndDrugsAsync(),
+        () => csvAnalizer.GetAccidentsWithAlcoholAndDrugs(),
         result => Console.WriteLine($"Total: {result}")
             ); 
     // 20
     RunQuery(
         "Rangos de edad más vulnerables",
-        () => csvAnalizer.GetMostVulnerableAgeRangesAsync(),
+        () => csvAnalizer.GetMostVulnerableAgeRanges(),
         result => Console.WriteLine($"Rango de edad: {result}")
             ); 
     // 21
     RunQuery(
         "Distritos con más positivos en alcohol",
-        () => csvAnalizer.GetDistrictsWithMostAlcoholPositivesAsync(),
+        () => csvAnalizer.GetDistrictsWithMostAlcoholPositives(),
         result =>
         {
             foreach (var r in result)
@@ -276,7 +276,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 22
     RunQuery(
         "Accidentes por código de distrito",
-        () => csvAnalizer.GetAccidentsByDistrictCodeAsync(),
+        () => csvAnalizer.GetAccidentsByDistrictCode(),
         result =>
         {
             foreach (var r in result)
@@ -287,7 +287,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 23
     RunQuery(
         "Accidentes por año",
-        () => csvAnalizer.GetAccidentsByYearAsync(),
+        () => csvAnalizer.GetAccidentsByYear(),
         result =>
         {
             foreach (var r in result)
@@ -298,7 +298,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 24
     RunQuery(
         "Evolución mensual por año",
-        () => csvAnalizer.GetMonthlyEvolutionByYearAsync(),
+        () => csvAnalizer.GetMonthlyEvolutionByYear(),
         result =>
         {
             foreach (var r in result)
@@ -309,7 +309,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 25
     RunQuery(
         "Distrito con más accidentes por año",
-        () => csvAnalizer.GetDistrictWithMostAccidentsByYearAsync(),
+        () => csvAnalizer.GetDistrictWithMostAccidentsByYear(),
         result =>
         {
             foreach (var r in result)
@@ -320,7 +320,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 26
     RunQuery(
         "Tendencia de alcohol por año",
-        () => csvAnalizer.GetAlcoholTrendByYearAsync(),
+        () => csvAnalizer.GetAlcoholTrendByYear(),
         result =>
         {
             foreach (var r in result)
@@ -331,7 +331,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 27
     RunQuery(
         "Comparativa fin de semana vs entre semana por año",
-        () => csvAnalizer.GetWeekendVsWeekdayByYearAsync(),
+        () => csvAnalizer.GetWeekendVsWeekdayByYear(),
         result =>
         {
             foreach (var r in result)
@@ -342,7 +342,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 28
     RunQuery(
         "Hora pico por año",
-        () => csvAnalizer.GetPeakHourByYearAsync(),
+        () => csvAnalizer.GetPeakHourByYear(),
         result =>
         {
             foreach (var r in result)
@@ -353,7 +353,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 29
     RunQuery(
         "Lesión más frecuente por año",
-        () => csvAnalizer.GetMostFrequentInjuryByYearAsync(),
+        () => csvAnalizer.GetMostFrequentInjuryByYear(),
         result =>
         {
             foreach (var r in result)
@@ -364,7 +364,7 @@ foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejec
     // 30
     RunQuery(
         "Evolución de peatones por año",
-        () => csvAnalizer.GetPedestrianTrendByYearAsync(),
+        () => csvAnalizer.GetPedestrianTrendByYear(),
         result =>
         {
             foreach (var r in result)

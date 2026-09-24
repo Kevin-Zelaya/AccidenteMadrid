@@ -423,18 +423,6 @@
               "target": "Package",
               "version": "[8.1.0, )"
             },
-            "Microsoft.Data.Analysis": {
-              "target": "Package",
-              "version": "[0.23.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[10.0.12, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[10.0.12, )"
-            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[10.0.12, )"

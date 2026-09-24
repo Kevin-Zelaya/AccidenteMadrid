@@ -25,14 +25,14 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
         await _repository.LoadData();
     }
     /// <summary>Obtener resultado</summary>
-    public int GetTotalAccidentsAsync() 
+    public int GetTotalAccidents() 
     {
         return _repository.GetALL()
             .Count();
         
     }
     /// <summary>Accidentes por distrito</summary> *
-    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictAsync()
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrict()
     {
         return _repository.GetALL()
             .GroupBy(r => r.District.Name) // se agrupa por el nombre del distrito
@@ -42,7 +42,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             ));
     }
     /// <summary>Accidentes por tipo</summary> *
-    public IEnumerable<(string Type, int Total)> GetAccidentsByTypeAsync()
+    public IEnumerable<(string Type, int Total)> GetAccidentsByType()
     {
         return _repository.GetALL()
             .GroupBy(r => r.AccidentType.message) // Agrupamos por tio de accidente
@@ -52,7 +52,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             ));
     }
     /// <summary>Accidentes por ocndición climatica</summary> *
-    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeatherAsync()
+    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeather()
     {
         return _repository.GetALL()
             .GroupBy(r => r.WeatherCondition.Message) // Se agrupa por condición climatica
@@ -64,7 +64,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Obtener accidentes por sexo</summary> *
-    public IEnumerable<(string Sex, int Total)> GetAccidentsBySexAsync()
+    public IEnumerable<(string Sex, int Total)> GetAccidentsBySex()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Gender.Message)
@@ -76,7 +76,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Obtenerlos por rango de edad</summary> *
-    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRangeAsync()
+    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRange()
     {
         return _repository.GetALL()
             .GroupBy(r => r.AgeRange) // Se agrupa por rango de edad
@@ -88,7 +88,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Positivos en alcohol</summary> *
-    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositivesAsync()
+    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositives()
     {
         return _repository.GetALL()
             .GroupBy(r => r.IsAlcoholPositive) // Por positivos o no en alcohol
@@ -100,7 +100,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Posititvos en drogas</summary> *
-    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositivesAsync()
+    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositives()
     {
         return _repository.GetALL()
             .GroupBy(r => r.IsDrugPositive) // Agrupar por positivos en drogas
@@ -112,7 +112,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Por día de la semana</summary> *
-    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeekAsync()
+    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeek()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Date.DayOfWeek) // Agrupar ppor día de semna
@@ -124,7 +124,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Por mes</summary> *
-    public IEnumerable<(int Month, int Total)> GetAccidentsByMonthAsync()
+    public IEnumerable<(int Month, int Total)> GetAccidentsByMonth()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Date.Month) // Agrupar por mes 
@@ -136,7 +136,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList(); // Lista de accidentes por ese mes
     }
     /// <summary>Hora con más accidentes</summary> *
-    public (TimeOnly Time, int Total) GetPeakAccidentHourAsync()
+    public (TimeOnly Time, int Total) GetPeakAccidentHour()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Time.Hour)
@@ -148,7 +148,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .First();
     }
     /// <summary>Tipo de lesión más frecuente</summary> *
-    public (string Injury, int Total) GetMostFrequentInjuriesAsync()
+    public (string Injury, int Total) GetMostFrequentInjuries()
     {
         return _repository.GetALL()
             .GroupBy(r => r.InjurySeverity.Message) // Se agrupa por lesión 
@@ -160,7 +160,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .First();
     }
     /// <summary>Vehículo más frecuente en accidentes</summary> *
-    public (string Type, int Total) GetMostInvolvedVehicleTypeAsync()
+    public (string Type, int Total) GetMostInvolvedVehicleType()
     {
         return _repository.GetALL()
             .GroupBy(r => r.VehicleType.Message) // Se agrupa por tipo de vehículo
@@ -174,14 +174,14 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
     }
 
     /// <summary>Obtener accidentes en los que este involucrado un peaton</summary> *
-    public int GetPedestrianAccidentsAsync()
+    public int GetPedestrianAccidents()
     {
         return _repository.GetALL()
             .Count(a => a.PersonRole == PersonType.Pedestrian);
 
     }
     /// <summary>Proporción mujeres hombre</summary> *
-    public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportionAsync()
+    public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportion()
     {
         var accidents = _repository.GetALL();
         var male = accidents.Count(a => a.Gender == Gender.Male); // Obtenemos total de hombres
@@ -196,7 +196,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
     }
     
     /// <summary>Distrito con más peatones</summary> *
-    public (string Name, int Total)[] GetDistrictsWithMostPedestriansAsync()
+    public (string Name, int Total)[] GetDistrictsWithMostPedestrians()
     {
         return _repository.GetALL()
             .Where(a => a.PersonRole == PersonType.Pedestrian)
@@ -211,7 +211,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToArray();
     }
     /// <summary>Días de semana vs fines de semana</summary> *
-    public IEnumerable<(string Type, int Total)> GetWeekendVsWeekdayAsync()
+    public IEnumerable<(string Type, int Total)> GetWeekendVsWeekday()
     {
         return _repository.GetALL()
             .GroupBy(a =>
@@ -226,7 +226,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Promedio de accidentes por día</summary> *
-    public double GetAverageAccidentsPerDayAsync()
+    public double GetAverageAccidentsPerDay()
     {
         return _repository.GetALL()
             .GroupBy(a => a.Date.Date)
@@ -234,7 +234,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .Average();
     }
     /// <summary>Rango de edad más vulverable</summary> *
-    public IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRangesAsync()
+    public IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRanges()
     {
         return _repository.GetALL()
             .GroupBy(a => a.AgeRange)
@@ -247,14 +247,14 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Accidentes positivos en drogas y alcohol</summary> *
-    public int GetAccidentsWithAlcoholAndDrugsAsync()
+    public int GetAccidentsWithAlcoholAndDrugs()
     {
         return _repository.GetALL()
             .Count(a => a.IsAlcoholPositive == true && a.IsDrugPositive == true);
     }
     
     /// <summary>Distrito con más positivos en alcohol</summary> *
-    public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositivesAsync()
+    public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositives()
     {
         return _repository.GetALL()
             .Where(a => a.IsAlcoholPositive == true)
@@ -268,7 +268,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Obtener por código del distrito</summary> *
-    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCodeAsync()
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCode()
     {
         return _repository.GetALL()
             .GroupBy(g => g.District)
@@ -280,7 +280,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Accidentes por año</summary> *
-    public IEnumerable<(int Year, int Total)> GetAccidentsByYearAsync()
+    public IEnumerable<(int Year, int Total)> GetAccidentsByYear()
     {
         return _repository.GetALL()
             .GroupBy(g => g.Date.Year)
@@ -292,7 +292,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Evolución mensual en los años</summary> *
-    public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYearAsync()
+    public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYear()
     {
         return _repository.GetALL()
             .GroupBy(g => new { g.Date.Month, g.Date.Year })
@@ -306,7 +306,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Distrito con más accidentes por año</summary> *
-    public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYearAsync()
+    public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYear()
     {
         return _repository.GetALL()
             .GroupBy(g => new { g.Date.Year, g.District.Name })
@@ -320,7 +320,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Evolución de accidentes con los años</summary> *
-    public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYearAsync()
+    public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYear()
     {
         return _repository.GetALL()
             .Where(a => a.IsAlcoholPositive)
@@ -335,7 +335,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Tipo de lesión más frecuente</summary> *
-    public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYearAsync()
+    public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYear()
     {
         return _repository.GetALL()
             .GroupBy(g => new
@@ -355,7 +355,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Hora pico de cada año</summary> *
-    public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYearAsync()
+    public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYear()
     {
         return _repository.GetALL()
             .GroupBy(g => g.Date.Year)
@@ -372,7 +372,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Lesión más frecuente por año</summary> *
-    public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYearAsync()
+    public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYear()
     {
         return _repository.GetALL()
             .GroupBy(g => g.Date.Year)
@@ -389,7 +389,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ToList();
     }
     /// <summary>Evolución de los accidentes con peatones involucrados</summary> *
-    public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYearAsync()
+    public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYear()
     {
         return _repository.GetALL()
             .Where(a => a.PersonRole == PersonType.Pedestrian)

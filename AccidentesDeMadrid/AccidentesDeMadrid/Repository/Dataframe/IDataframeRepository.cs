@@ -1,5 +1,4 @@
 ﻿using Deedle;
-using Microsoft.Data.Analysis;
 
 namespace AccidentesDeMadrid.Repository;
 
