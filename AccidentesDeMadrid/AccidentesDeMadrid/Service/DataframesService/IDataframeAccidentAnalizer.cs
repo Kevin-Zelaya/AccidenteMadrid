@@ -1,6 +1,9 @@
-﻿namespace AccidentesDeMadrid.Service;
+﻿using AccidentesDeMadrid.Repository;
 
-public interface IDataframeAccidentAnalizer :IAccidentAnalizer
+namespace AccidentesDeMadrid.Service;
+
+public interface IDataframeAccidentAnalizer : IAccidentAnalizer
 {
+    
     
 }

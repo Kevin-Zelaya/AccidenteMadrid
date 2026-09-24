@@ -1,10 +1,11 @@
-﻿using Microsoft.Data.Analysis;
+﻿using Deedle;
+using Microsoft.Data.Analysis;
 
 namespace AccidentesDeMadrid.Repository;
 
 public interface IDataframeRepository
 {
     public Task LoadData();
-    public DataFrame GetALL();
+    public Frame<int, string> GetALL();
     public void ClearData();
 }

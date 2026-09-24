@@ -37,7 +37,6 @@ public class DependencyProvider
         });
         /// Rutas de los csv para uso en el repositorio
         services.AddSingleton(AppConfig.CsvsPaths);
-        
         /// Las clases que implementen la interfaz seran escaneadas
         /// seran inyectadas con el respectivo ciclo de vida
         /// reconociendo donde se deben implementar

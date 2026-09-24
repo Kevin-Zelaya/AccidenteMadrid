@@ -2,21 +2,26 @@
 using AccidentesDeMadrid.Entity.Enum;
 using AccidentesDeMadrid.Interfaces;
 using AccidentesDeMadrid.Repository;
+using Microsoft.Extensions.Logging;
 
 namespace AccidentesDeMadrid.Service;
 
 public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
 {
     private readonly IRepository _repository;
+    private readonly ILogger<IAccidentAnalizer> _logger;
     public AccidentesLinqAnalyzer(
-        IRepository repository
+        IRepository repository,
+        ILogger<IAccidentAnalizer> logger
         )
     {
         _repository = repository;
+        _logger = logger;
     }
 
     public async Task LoadData()
     {
+        _logger.LogInformation("[LINQ-ANALIZER] Intentando cargar datos desde el analizer.");
         await _repository.LoadData();
     }
     /// <summary>Obtener resultado</summary>
@@ -26,132 +31,156 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .Count();
         
     }
-    /// <summary>Accidentes por distrito</summary>
-    public IDictionary<string, List<Accident>> GetAccidentsByDistrictAsync()
+    /// <summary>Accidentes por distrito</summary> *
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.District.Name) // se agrupa por el nombre del distrito
-            .ToDictionary(
-                g => g.Key, // Diccionario que contiene la clave (en este caso nombre del distrito)
-                g => g.Take(3).ToList() //  y como valor la lista de accidentes
-            );
+            .Select(g => (
+                District: g.Key, 
+                Total: g.Count()
+            ));
     }
-    /// <summary>Accidentes por tipo</summary>
-    public IDictionary<string, List<Accident>> GetAccidentsByTypeAsync()
+    /// <summary>Accidentes por tipo</summary> *
+    public IEnumerable<(string Type, int Total)> GetAccidentsByTypeAsync()
     {
         return _repository.GetALL()
-            .GroupBy(r => r.AccidentType) // Agrupamos por tio de accidente
-            .ToDictionary(
-                g => g.Key.message, // Tipo de accidente como clave
-                g => g.Take(3).ToList() // Lista de accidentes de ese tipo
-            );
+            .GroupBy(r => r.AccidentType.message) // Agrupamos por tio de accidente
+            .Select(g => (
+                Type: g.Key,
+                Total: g.Count()
+            ));
     }
-    /// <summary>Accidentes por ocndición climatica</summary>
-    public IDictionary<string, List<Accident>> GetAccidentsByWeatherAsync()
+    /// <summary>Accidentes por ocndición climatica</summary> *
+    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeatherAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.WeatherCondition.Message) // Se agrupa por condición climatica
-            .ToDictionary(
-                g => g.Key, // Condición climatica como clave
-                g => g.Take(3).ToList()); // Lista de accidentes 
+            .Select(g => (
+                Weather: g.Key,
+                Total: g.Count()
+            ))
+            .OrderByDescending(x => x.Total)
+            .ToList();
     }
-    /// <summary>Obtener accidentes por sexo</summary>
-    public IDictionary<string, List<Accident>> GetAccidentsBySexAsync()
+    /// <summary>Obtener accidentes por sexo</summary> *
+    public IEnumerable<(string Sex, int Total)> GetAccidentsBySexAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Gender.Message)
-            .ToDictionary(
-                g => g.Key, // Accidentes por genero Hombre/Mujer/Sin especificar
-                g => g.Take(3).ToList()); // Lsta de accidente para cada genero
+            .Select(g => (
+                Sex: g.Key,
+                Total: g.Count()
+            ))
+            .OrderByDescending(x => x.Total)
+            .ToList();
     }
-    /// <summary>Obtenerlos por rango de edad</summary>
-    public IDictionary<string, List<Accident>> GetAccidentsByAgeRangeAsync()
+    /// <summary>Obtenerlos por rango de edad</summary> *
+    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRangeAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.AgeRange) // Se agrupa por rango de edad
-            .ToDictionary(
-                g => g.Key, // Rango de edad como clave
-                g => g.Take(3).ToList()); // Lista para cada rango
+            .Select(g => (
+                Range: g.Key,
+                Total: g.Count()
+            ))
+            .OrderByDescending(x => x.Total)
+            .ToList();
     }
-    /// <summary>Positivos en alcohol</summary>
-    public IDictionary<bool, List<Accident>> GetAlcoholPositivesAsync()
+    /// <summary>Positivos en alcohol</summary> *
+    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositivesAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.IsAlcoholPositive) // Por positivos o no en alcohol
-            .ToDictionary(
-                g => g.Key,
-                g => g.Take(3).ToList());
+            .Select(g => (
+                IsPositive: g.Key,
+                Total: g.Count()
+            ))
+            .OrderByDescending(x => x.Total)
+            .ToList();
     }
-    /// <summary>Posititvos en drogas</summary>
-    public IDictionary<bool, List<Accident>> GetDrugPositivesAsync()
+    /// <summary>Posititvos en drogas</summary> *
+    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositivesAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.IsDrugPositive) // Agrupar por positivos en drogas
-            .ToDictionary(
-                g => g.Key, // Booleano como clave
-                g => g.Take(3).ToList()); // lista para cada opción
+            .Select(g => (
+                IsPositive: g.Key,
+                Total: g.Count()
+            ))
+            .OrderByDescending(x => x.Total)
+            .ToList();
     }
-    /// <summary>Por día de la semana</summary>
-    public IDictionary<DayOfWeek, List<Accident>> GetAccidentsByDayOfWeekAsync()
+    /// <summary>Por día de la semana</summary> *
+    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeekAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Date.DayOfWeek) // Agrupar ppor día de semna
-            .OrderBy(g => g.Key)
-            .ToDictionary(
-                g => g.Key, // día de la semana como clave
-                g => g.Take(3).ToList()); // Lista de claves para cada caso
+            .Select(g => (
+                Day: g.Key,
+                Total: g.Count()
+            ))
+            .OrderByDescending(x => x.Total)
+            .ToList();
     }
-    /// <summary>Por mes</summary>
-    public IDictionary<int, List<Accident>> GetAccidentsByMonthAsync()
+    /// <summary>Por mes</summary> *
+    public IEnumerable<(int Month, int Total)> GetAccidentsByMonthAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.Date.Month) // Agrupar por mes 
-            .OrderBy(g => g.Key) // Se ordena por mes
-            .ToDictionary(
-                g => g.Key, // mes como clave
-                g => g.Take(3).ToList()); // Lista de accidentes por ese mes
+            .Select(g => (
+                Month: g.Key,
+                Total: g.Count()
+            ))
+            .OrderBy(x => x.Month)
+            .ToList(); // Lista de accidentes por ese mes
     }
-    /// <summary>Hora con más accidentes</summary>
-    public (TimeOnly time, List<Accident> Accidents, int Total) GetPeakAccidentHourAsync() 
+    /// <summary>Hora con más accidentes</summary> *
+    public (TimeOnly Time, int Total) GetPeakAccidentHourAsync()
     {
         return _repository.GetALL()
-            .GroupBy(r => r.Time) // Agrupar por hora
-            .OrderByDescending(g => g.Count()) // Ordenar de mayor a menor
-            .Select(g =>  ( // Tupla con...
-                Time: g.Key, // Tiempo
-                Accidents: g.Take(5).ToList(), // Lista de accidentes
-                Total: g.Count() // Total
+            .GroupBy(r => r.Time.Hour)
+            .Select(g => (
+                Time: new TimeOnly(g.Key, 0),
+                Total: g.Count()
             ))
-            .First(); // Obtengo el primero
+            .OrderByDescending(x => x.Total)
+            .First();
     }
-    /// <summary>Tipo de lesión más frecuente</summary>
-    public (string Injury, List<Accident> Accidents, int Total) GetMostFrequentInjuriesAsync()
+    /// <summary>Tipo de lesión más frecuente</summary> *
+    public (string Injury, int Total) GetMostFrequentInjuriesAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.InjurySeverity.Message) // Se agrupa por lesión 
-            .OrderByDescending(g => g.Count()) // Se ordena de mayor a menor
             .Select(g => (
                 Injury: g.Key,
-                Accidents: g.Take(5).ToList(),
                 Total: g.Count()
             ))
-            .First(); // Se obtiene el mayor
+            .OrderByDescending(x => x.Total)
+            .First();
     }
-    /// <summary>Vehículo más frecuente en accidentes</summary>
-    public (string type, List<Accident> Accidents, int Total) GetMostInvolvedVehicleTypeAsync()
+    /// <summary>Vehículo más frecuente en accidentes</summary> *
+    public (string Type, int Total) GetMostInvolvedVehicleTypeAsync()
     {
         return _repository.GetALL()
             .GroupBy(r => r.VehicleType.Message) // Se agrupa por tipo de vehículo
-            .OrderByDescending(g => g.Count()) // Se ordena de forma descendiente
             .Select(g => (
-                Injury: g.Key,
-                Accidents: g.Take(5).ToList(),
+                Type: g.Key,
                 Total: g.Count()
             ))
-            .First(); // Obtenemos el primero
+            .OrderByDescending(x => x.Total)
+            .First();
+
     }
 
-    /// <summary>Proporción mujeres hombre</summary>
+    /// <summary>Obtener accidentes en los que este involucrado un peaton</summary> *
+    public int GetPedestrianAccidentsAsync()
+    {
+        return _repository.GetALL()
+            .Count(a => a.PersonRole == PersonType.Pedestrian);
+
+    }
+    /// <summary>Proporción mujeres hombre</summary> *
     public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportionAsync()
     {
         var accidents = _repository.GetALL();
@@ -165,19 +194,8 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             FemalePercentage: (double)female / total * 100
         );
     }
-    /// <summary>Obtener accidentes en los que este involucrado un peaton</summary>
-    public (int Total, List<Accident> Accidents) GetPedestrianAccidentsAsync()
-    {
-        var accidents = _repository.GetALL()
-            .Where(a => a.PersonRole == PersonType.Pedestrian) // Se filtra obteniendo solo los peatones
-            .ToList();
-
-        return (
-            accidents.Count,
-            accidents.Take(5).ToList()
-        );
-    }
-    /// <summary>Distrito con más peatones</summary>
+    
+    /// <summary>Distrito con más peatones</summary> *
     public (string Name, int Total)[] GetDistrictsWithMostPedestriansAsync()
     {
         return _repository.GetALL()
@@ -192,7 +210,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .Take(3)
             .ToArray();
     }
-    /// <summary>Días de semana vs fines de semana</summary>
+    /// <summary>Días de semana vs fines de semana</summary> *
     public IEnumerable<(string Type, int Total)> GetWeekendVsWeekdayAsync()
     {
         return _repository.GetALL()
@@ -207,24 +225,15 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             ))
             .ToList();
     }
-    /// <summary>Promedio de accidentes por día</summary>
-    public IEnumerable<(DateTime Date, int Total)> GetAverageAccidentsPerDayAsync()
+    /// <summary>Promedio de accidentes por día</summary> *
+    public double GetAverageAccidentsPerDayAsync()
     {
         return _repository.GetALL()
             .GroupBy(a => a.Date.Date)
-            .Select(g => (
-                Date: g.Key,
-                Total: g.Count()
-            ))
-            .ToList();
+            .Select(g => g.Count())
+            .Average();
     }
-    /// <summary>Accidentes positivos en drogas y alcohol</summary>
-    public int GetAccidentsWithAlcoholAndDrugsAsync()
-    {
-        return _repository.GetALL()
-            .Count(a => a.IsAlcoholPositive == true && a.IsDrugPositive == true);
-    }
-    /// <summary>Rango de edad más vulverable</summary>
+    /// <summary>Rango de edad más vulverable</summary> *
     public IEnumerable<(string Range, int Total)> GetMostVulnerableAgeRangesAsync()
     {
         return _repository.GetALL()
@@ -237,7 +246,14 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .Take(3)
             .ToList();
     }
-    /// <summary>Distrito con más positivos en alcohol</summary>
+    /// <summary>Accidentes positivos en drogas y alcohol</summary> *
+    public int GetAccidentsWithAlcoholAndDrugsAsync()
+    {
+        return _repository.GetALL()
+            .Count(a => a.IsAlcoholPositive == true && a.IsDrugPositive == true);
+    }
+    
+    /// <summary>Distrito con más positivos en alcohol</summary> *
     public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositivesAsync()
     {
         return _repository.GetALL()
@@ -251,18 +267,19 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .Take(3)
             .ToList();
     }
-    /// <summary>Obtener por código del distrito</summary>
-    public IEnumerable<(District District, List<Accident> Accidents)> GetAccidentsByDistrictCodeAsync()
+    /// <summary>Obtener por código del distrito</summary> *
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCodeAsync()
     {
         return _repository.GetALL()
             .GroupBy(g => g.District)
             .Select(g => (
-                distric: g.Key,
-                list: g.Take(3).ToList()
+                District: g.Key.ToString(),
+                Total: g.Count()
             ))
+            .OrderByDescending(x => x.Total)
             .ToList();
     }
-    /// <summary>Accidentes por año</summary>
+    /// <summary>Accidentes por año</summary> *
     public IEnumerable<(int Year, int Total)> GetAccidentsByYearAsync()
     {
         return _repository.GetALL()
@@ -274,7 +291,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .OrderBy(g => g.Year)
             .ToList();
     }
-    /// <summary>Evolución mensual en los años</summary>
+    /// <summary>Evolución mensual en los años</summary> *
     public IEnumerable<(int Year, int Month, int Total)> GetMonthlyEvolutionByYearAsync()
     {
         return _repository.GetALL()
@@ -288,7 +305,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ThenBy(g => g.Month)
             .ToList();
     }
-    /// <summary>Distrito con más accidentes por año</summary>
+    /// <summary>Distrito con más accidentes por año</summary> *
     public IEnumerable<(int Year, string Name, int Total)> GetDistrictWithMostAccidentsByYearAsync()
     {
         return _repository.GetALL()
@@ -302,7 +319,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ThenBy(g => g.Name)
             .ToList();
     }
-    /// <summary>Evolución de accidentes con los años</summary>
+    /// <summary>Evolución de accidentes con los años</summary> *
     public IEnumerable<(int Year, bool IsAlcoholPositive, int Total)> GetAlcoholTrendByYearAsync()
     {
         return _repository.GetALL()
@@ -317,7 +334,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ThenBy(g => g.IsAlcoholPositive)
             .ToList();
     }
-    /// <summary>Tipo de lesión más frecuente</summary>
+    /// <summary>Tipo de lesión más frecuente</summary> *
     public IEnumerable<(int Year, string Tag, int Total)> GetWeekendVsWeekdayByYearAsync()
     {
         return _repository.GetALL()
@@ -337,7 +354,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .ThenBy(g => g.Tag)
             .ToList();
     }
-    /// <summary>Hora pico de cada año</summary>
+    /// <summary>Hora pico de cada año</summary> *
     public IEnumerable<(int Year, int Time, int Total)> GetPeakHourByYearAsync()
     {
         return _repository.GetALL()
@@ -354,7 +371,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .OrderByDescending(g => g.Year)
             .ToList();
     }
-    /// <summary>Lesión más frecuente por año</summary>
+    /// <summary>Lesión más frecuente por año</summary> *
     public IEnumerable<(int Year, string Injury, int Total)> GetMostFrequentInjuryByYearAsync()
     {
         return _repository.GetALL()
@@ -371,7 +388,7 @@ public class AccidentesLinqAnalyzer : ILinqAccidentAnalizer, IScopedService
             .OrderByDescending(g => g.Year)
             .ToList();
     }
-    /// <summary>Evolución de los accidentes con peatones involucrados</summary>
+    /// <summary>Evolución de los accidentes con peatones involucrados</summary> *
     public IEnumerable<(int Year, int Total)> GetPedestrianTrendByYearAsync()
     {
         return _repository.GetALL()

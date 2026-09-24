@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[33.1.0, )"
             },
+            "Deedle": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.Data.Analysis": {
               "target": "Package",
               "version": "[0.23.0, )"

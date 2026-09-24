@@ -7,31 +7,31 @@ public interface IAccidentAnalizer
 {
     int GetTotalAccidentsAsync();
     public Task LoadData();
-    IDictionary<string, List<Accident>> GetAccidentsByDistrictAsync();
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictAsync();
 
-    public IDictionary<string, List<Accident>>  GetAccidentsByTypeAsync();
+    public IEnumerable<(string Type, int Total)> GetAccidentsByTypeAsync();
 
-    public IDictionary<string, List<Accident>> GetAccidentsByWeatherAsync();
+    public IEnumerable<(string Weather, int Total)> GetAccidentsByWeatherAsync();
 
-    public IDictionary<string, List<Accident>> GetAccidentsBySexAsync();
+    public IEnumerable<(string Sex, int Total)> GetAccidentsBySexAsync();
 
-    public IDictionary<string, List<Accident>> GetAccidentsByAgeRangeAsync();
+    public IEnumerable<(string Range, int Total)> GetAccidentsByAgeRangeAsync();
 
-    public IDictionary<bool, List<Accident>>  GetAlcoholPositivesAsync();
+    public IEnumerable<(bool IsPositive, int Total)> GetAlcoholPositivesAsync();
 
-    public IDictionary<bool, List<Accident>> GetDrugPositivesAsync();
+    public IEnumerable<(bool IsPositive, int Total)> GetDrugPositivesAsync();
 
-    public IDictionary<DayOfWeek, List<Accident>> GetAccidentsByDayOfWeekAsync();
+    public IEnumerable<(DayOfWeek Day, int Total)> GetAccidentsByDayOfWeekAsync();
 
-    public IDictionary<int, List<Accident>> GetAccidentsByMonthAsync();
+    public IEnumerable<(int Month, int Total)> GetAccidentsByMonthAsync();
 
-    public (TimeOnly time, List<Accident> Accidents, int Total) GetPeakAccidentHourAsync();
+    public (TimeOnly Time, int Total) GetPeakAccidentHourAsync();
 
-    public (string Injury, List<Accident> Accidents, int Total) GetMostFrequentInjuriesAsync();
+    public (string Injury, int Total) GetMostFrequentInjuriesAsync(); //
 
-    public (string type, List<Accident> Accidents, int Total) GetMostInvolvedVehicleTypeAsync();
+    public (string Type, int Total) GetMostInvolvedVehicleTypeAsync();//
 
-    (int Total, List<Accident> Accidents)  GetPedestrianAccidentsAsync();
+    int GetPedestrianAccidentsAsync(); //
 
     public (int Male, int Female, double MalePercentage, double FemalePercentage) GetMaleFemaleProportionAsync();
     
@@ -41,7 +41,7 @@ public interface IAccidentAnalizer
     
     
     
-    public IEnumerable<(DateTime Date, int Total)> GetAverageAccidentsPerDayAsync();
+    public double GetAverageAccidentsPerDayAsync();
     
 
     
@@ -55,7 +55,7 @@ public interface IAccidentAnalizer
 
     public IEnumerable<(string District, int Total)> GetDistrictsWithMostAlcoholPositivesAsync();
 
-    public IEnumerable<(District District, List<Accident> Accidents)> GetAccidentsByDistrictCodeAsync();
+    public IEnumerable<(string District, int Total)> GetAccidentsByDistrictCodeAsync();
 
     public IEnumerable<(int Year, int Total)> GetAccidentsByYearAsync();
 

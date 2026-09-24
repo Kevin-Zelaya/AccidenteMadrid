@@ -1,9 +1,10 @@
-﻿using Microsoft.Data.Analysis;
+﻿using Deedle;
+using Microsoft.Data.Analysis;
 
 namespace AccidentesDeMadrid.Repository.Load;
 
 public interface IDataframeLoader
 {
-    Task<DataFrame> LoadCsv(IEnumerable<string> paths);
+    Task<Frame<int, string>> LoadCsv(IEnumerable<string> paths);
     
 }

@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using AccidentesDeMadrid;
 using AccidentesDeMadrid.Configuration;
 using AccidentesDeMadrid.Dependency;
@@ -13,204 +12,54 @@ using Microsoft.Extensions.DependencyInjection;
 
 var provider = DependencyProvider.Configure();
 
-var transiend = provider.CreateScope();
 
-var loader = transiend.ServiceProvider.GetRequiredService<ICsvLoader>();
-var directoryPath = Path.Combine("Data", "accidentes_trafico_2024.csv");
-IService service = provider.GetRequiredService<IService>();
-ILinqAccidentAnalizer analizerLinq = provider.GetRequiredService<ILinqAccidentAnalizer>();
 
 Stopwatch stopwatch;
-/*
 Console.WriteLine("===========================================================");
 Console.WriteLine("=               Accidentes de madrid                      =");
 Console.WriteLine("===========================================================");
+var times = new long[2, 31]; //  tiempo total y para cada consulta el 31 es del proceso completo
 
-// Cargar data
-await analizerLinq.LoadData();
+// Implementación de IAccidentAnalizer, me permite trabajar con cualquier analizador
+IAccidentAnalizer csvAnalizer;
+//
+var csvAnalizers = new(string name, IAccidentAnalizer service)[] // Array de  analizadores
+{
+    ("LINQ ANALIZER" ,provider.GetRequiredService<ILinqAccidentAnalizer>()),
+    ("DATAFRAMES ANALIZER", provider.GetRequiredService<IDataframeAccidentAnalizer>())
+}; // Implementan cada uno una interfaz diferentes pero que implemmentan IAccidentAnalizer
 
-Console.WriteLine("=================================================================");
-Console.WriteLine("                1. NÚMERO TOTAL DE ACCIDENTES");
-Console.WriteLine("=================================================================");
-// Para medir el tiempo de ejecución del proceso
-stopwatch = Stopwatch.StartNew();
-var result = analizerLinq.GetTotalAccidentsAsync();
-Console.WriteLine($"1. Accidentes registrados en los últimos tres años: {result}");
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
+Stopwatch stopwatchAnalizer; // Contador para el total.
+var anzInder = 0; // analizer index
+var qrInder = 0; // query index
 
 
-Console.WriteLine("=================================================================");
-Console.WriteLine("                2. ACCIDENTES POR DISTRITO (TOP 5)");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-var data2 = analizerLinq.GetAccidentsByDistrictAsync();
-
-foreach (var distric in data2)
+void RunQuery<T>( // Auxiliar para reutilizar declaraciones por cada consulta
+    string title,
+    Func<T> query,
+    Action<T> print)
 {
     Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {distric.Key}  ===");
+    Console.WriteLine($"\n[{qrInder+1}] {title}");
     Console.ResetColor();
-    var count = 1;
-    UtilLinq.Print(distric.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
 
-Console.WriteLine("=================================================================");
-Console.WriteLine("                    3. ACCIDENTES POR TIPO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-var accidentsType = analizerLinq.GetAccidentsByTypeAsync();
+    var stopwatch = Stopwatch.StartNew();
 
-foreach (var accidentType in accidentsType)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {accidentType.Key}  ===");
+    var result = query();
+    print(result);
+    
+    stopwatch.Stop();
+    times[anzInder, qrInder] = stopwatch.ElapsedMilliseconds; // Se guarda el tiempo que tardó la consulta usando las dos variables indice
+    
+    Console.ForegroundColor = ConsoleColor.DarkGray;
+    Console.WriteLine($"  {times[anzInder, qrInder]} ms");
     Console.ResetColor();
-    
-    UtilLinq.Print(accidentType.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("               4. ACCIDENTES POR CONDICIÓN CLIMATICA");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-var weatherCondition = analizerLinq.GetAccidentsByWeatherAsync();
-    
-    
-foreach (var weather in weatherCondition)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {weather.Key}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(weather.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================");
-Console.WriteLine("                   5. ACCIDENTES POR SEXO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-var genderCausse = analizerLinq.GetAccidentsBySexAsync();
-    
-foreach (var gender in genderCausse)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {gender.Key}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(gender.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================");
-Console.WriteLine("                   6. ACCIDENTES POR RANGO DE EDAD");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-var ageRange = analizerLinq.GetAccidentsByAgeRangeAsync();
-foreach (var age in ageRange)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {age.Key}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(age.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  7. POSITIVOS EN ALCOHOL");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-var alcoholPositive = analizerLinq.GetAlcoholPositivesAsync();
-foreach (var alcohol in alcoholPositive)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {(alcohol.Key?"Positivos":"Negativos")}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(alcohol.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  8. POSITIVOS EN DROGAS");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-var drugsPositive = analizerLinq.GetDrugPositivesAsync();
-    
-foreach (var drugs in drugsPositive)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {(drugs.Key?"Positivos":"Negativos")}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(drugs.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  9. DÍA DE LA SEMANA");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-var DayOfWeek = analizerLinq.GetAccidentsByDayOfWeekAsync();
-foreach (var day in DayOfWeek)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {day.Key}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(day.Value);
-}
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  10. POR MES DEL AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var PerMonth = analizerLinq.GetAccidentsByMonthAsync();
-    
-foreach (var month in PerMonth)
-{
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  {GetMonthName(month.Key)}  ===");
-    Console.ResetColor();
-    
-    UtilLinq.Print(month.Value);
+    qrInder++; // siguiente indice
 }
 
-string GetMonthName(int number)
-{
-    return number switch
+string GetMonthName(int month) // Auxiliar para obtener el nombre de un mes
+{ 
+    return month switch
     {
         1 => "Enero",
         2 => "Febrero",
@@ -224,528 +73,324 @@ string GetMonthName(int number)
         10 => "Octubre",
         11 => "Noviembre",
         12 => "Diciembre",
+        _ => "Desconocido"
     };
 }
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  11. HORA CON MÁS ACCIDENTES");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var HourWithMostAccidents = analizerLinq.GetPeakAccidentHourAsync();
-    
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"  ===  Más accidentes a las: {HourWithMostAccidents.time}  ==="); 
-    Console.WriteLine($"  ===  Total: {HourWithMostAccidents.Total}  ==="); 
-    Console.ResetColor();
-    
-    UtilLinq.Print(HourWithMostAccidents.Accidents);
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 12. LESIONES MÁS FRECUENTES");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var injurySeverity = analizerLinq.GetMostFrequentInjuriesAsync();
-    
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Se presentan con más lesiones del tipo: {injurySeverity.Injury}  ==="); 
-Console.WriteLine($"  ===  Total: {injurySeverity.Total}  ==="); 
-Console.ResetColor();
-    
-UtilLinq.Print(injurySeverity.Accidents);
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 13. VEHÍCULO MÁS IMPLICADO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var vehicleInMostAccident = analizerLinq.GetMostInvolvedVehicleTypeAsync();
-    
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  El vehículo más frecuente en los accidentes: {vehicleInMostAccident.type}  ==="); 
-Console.WriteLine($"  ===  Total: {vehicleInMostAccident.Total}  ==="); 
-Console.ResetColor();
-    
-UtilLinq.Print(injurySeverity.Accidents);
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  14. ACCIDENTES CON PEATONES");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var PersonRole = analizerLinq.GetPedestrianAccidentsAsync();
-    
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Accidentes con peatones: {PersonRole.Total}  ==="); 
-Console.ResetColor();
-    
-UtilLinq.Print(PersonRole.Accidents);
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
-
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 15. PROPORCIÓN HOMBRE/MUJER");
-Console.WriteLine("=================================================================");
-
-stopwatch = Stopwatch.StartNew();
-
-var proportion = analizerLinq.GetMaleFemaleProportionAsync();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine("  ===  Proporción hombre/mujer  ===");
-Console.WriteLine($"    Hombres: {proportion.Male} ({proportion.MalePercentage:F2}%)");
-Console.WriteLine($"    Mujeres: {proportion.Female} ({proportion.FemalePercentage:F2}%)");
-Console.ResetColor();
-
-stopwatch.Stop();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-
-Console.WriteLine("=================================================================\n\n");
-
-service.ClearData();
-
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 16. DISTRITOS CON MÁS PEATONES");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var DistricWithMorePedestrians = analizerLinq.GetDistrictsWithMostPedestriansAsync();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Distritos con más peatones. (Top 3)  ===");
-var count3 = 1;
-foreach (var d in DistricWithMorePedestrians)
+foreach (var analizer in csvAnalizers) // Por cada analizer en el array, se ejecuta una vez
 {
-    Console.WriteLine($"{count3}. {d.Name}: {d.Total}");
-}
-
-Console.ResetColor();
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 17. DÍA DE SEMANA VS FIN DE SEMANA");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var daysVsWeekend = analizerLinq.GetWeekendVsWeekdayAsync();
-
-var total = daysVsWeekend.Sum(x => x.Total);
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine("  ===  Días de semana vs fines de semana  ===");
-
-foreach (var d in daysVsWeekend)
-{
-    Console.WriteLine(
-        $"{d.Type}. {d.Total}: {(double)d.Total / total * 100:F2}%"
+    qrInder = 0; // Indice de consultas a 0
+    stopwatchAnalizer = Stopwatch.StartNew(); // Inicia contador para todo el analizer
+    csvAnalizer = analizer.service; // Asignamos el analizer a la implementación
+    await csvAnalizer.LoadData();
+    
+    Console.WriteLine("===========================================================");
+    Console.WriteLine($"=                  {analizer.name}      =");
+    Console.WriteLine("===========================================================");
+    
+    
+    // 1
+    RunQuery(
+        "Total de accidentes",
+        () => csvAnalizer.GetTotalAccidentsAsync(),
+        result => Console.WriteLine($"Total: {result}")
+        );
+    // 2
+    RunQuery(
+        "Accidentes por distrito",
+        () => csvAnalizer.GetAccidentsByDistrictAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Distrito: {r.District} Total: {r.Total}");
+            }
+        });// 3
+    RunQuery(
+        "Accidentes por tipo",
+        () => csvAnalizer.GetAccidentsByTypeAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Tipo de accidente: {r.Type} Total: {r.Total}");
+            }
+        });
+    // 4
+    RunQuery(
+        "Accidentes por estado meteorológico",
+        () => csvAnalizer.GetAccidentsByWeatherAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Estado meteorologico:: {r.Weather} Total: {r.Total}");
+            }
+        });
+    // 5
+    RunQuery(
+        "Accidentes por sexo",
+        () => csvAnalizer.GetAccidentsBySexAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Genero: {r.Sex} Total: {r.Total}");
+            }
+        });
+    // 6
+    RunQuery(
+        "Accidentes por edad",
+        () => csvAnalizer.GetAccidentsByAgeRangeAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Rango de edad: {r.Range} Total: {r.Total}");
+            }
+        });
+    // 7
+    RunQuery(
+        "Positivos en alcohol",
+        () => csvAnalizer.GetAlcoholPositivesAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Alcohol: {(r.IsPositive?"Positivo": "Negativo")} Total: {r.Total}");
+            }
+        });
+    // 8
+    RunQuery(
+        "Positivos en drogas",
+        () => csvAnalizer.GetDrugPositivesAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Drogas: {(r.IsPositive?"Positivo": "Negativo")} Total: {r.Total}");
+            }
+        });
+    // 9
+    RunQuery(
+        "Accidentes por día de la semana",
+        () => csvAnalizer.GetAccidentsByDayOfWeekAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Dia:: {r.Day} Total: {r.Total}");
+            }
+        });
+    // 10
+    RunQuery(
+        "Accidentes por mes",
+        () => csvAnalizer.GetAccidentsByMonthAsync(),
+        result =>
+        {
+            foreach (var r in result)
+            {
+                Console.WriteLine($"Mes: {GetMonthName(r.Month)} Total: {r.Total}");
+            }
+        });
+    // 11
+    RunQuery(
+        "Hora con más accidentes",
+        () => csvAnalizer.GetPeakAccidentHourAsync(),
+        result => Console.WriteLine($"Hora: {result.Time} Total: {result.Total}")
+        );
+    // 12
+    RunQuery(
+        "Lesiones más frecuentes",
+        () => csvAnalizer.GetMostFrequentInjuriesAsync(),
+        result => Console.WriteLine($"Lesión: {result.Injury} Total: {result.Total}")
+        );
+    // 13
+    RunQuery(
+        "Tipo de vehículo más inplicado",
+        () => csvAnalizer.GetMostInvolvedVehicleTypeAsync(),
+        result => Console.WriteLine($"Lesión: {result.Type} Total: {result.Total}")
+        );
+    // 14
+    RunQuery(
+        "Accidentes con peatones",
+        () => csvAnalizer.GetPedestrianAccidentsAsync(),
+        result => Console.WriteLine($"Total: {result}")
+        );
+    // 15
+    RunQuery(
+        "Proporición homhre / mujer",
+        () => csvAnalizer.GetMaleFemaleProportionAsync(),
+        result =>
+        {
+            Console.WriteLine($"Hombres: {result.Male} {result.MalePercentage}%");
+            Console.WriteLine($"Hombres: {result.Female} {result.FemalePercentage}%");
+            
+        });
+    // 16
+    RunQuery(
+        "Distritos con más peatonesr",
+        () => csvAnalizer.GetDistrictsWithMostPedestriansAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"Distito: {r.Name} Total: {r.Total}%");  
+        });
+    // 17
+    RunQuery(
+        "Fin de semana vs entre semana",
+        () => csvAnalizer.GetWeekendVsWeekdayAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"{r.Type} Total: {r.Total}");  
+            });
+    // 18
+    RunQuery(
+        "Media de accidentes por día",
+        () => csvAnalizer.GetAverageAccidentsPerDayAsync(),
+        result => Console.WriteLine($"Promedio de accidentes: {result}")
+            ); 
+    // 19
+    RunQuery(
+        "Accidentes con alcohol + droga",
+        () => csvAnalizer.GetAccidentsWithAlcoholAndDrugsAsync(),
+        result => Console.WriteLine($"Total: {result}")
+            ); 
+    // 20
+    RunQuery(
+        "Rangos de edad más vulnerables",
+        () => csvAnalizer.GetMostVulnerableAgeRangesAsync(),
+        result => Console.WriteLine($"Rango de edad: {result}")
+            ); 
+    // 21
+    RunQuery(
+        "Distritos con más positivos en alcohol",
+        () => csvAnalizer.GetDistrictsWithMostAlcoholPositivesAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"{r.District}: {r.Total}");
+        }
     );
-}
 
+    // 22
+    RunQuery(
+        "Accidentes por código de distrito",
+        () => csvAnalizer.GetAccidentsByDistrictCodeAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"{r.District}: {r.Total}");
+        }
+    );
 
-Console.ResetColor();
+    // 23
+    RunQuery(
+        "Accidentes por año",
+        () => csvAnalizer.GetAccidentsByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"   {r.Year}: {r.Total}");
+        }
+    );
 
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-//service.ClearData();
+    // 24
+    RunQuery(
+        "Evolución mensual por año",
+        () => csvAnalizer.GetMonthlyEvolutionByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"Yesa: {r.Year} Mes: {r.Month} Total: {r.Total}");
+        }
+    );
 
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 18. MEDIA DE ACCIDENTES POR DÍA");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
+    // 25
+    RunQuery(
+        "Distrito con más accidentes por año",
+        () => csvAnalizer.GetDistrictWithMostAccidentsByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"Año: {r.Year} Distrito: {r.Name}  Total: ({r.Total})");
+        }
+    );
 
-var average = analizerLinq.GetAverageAccidentsPerDayAsync();
+    // 26
+    RunQuery(
+        "Tendencia de alcohol por año",
+        () => csvAnalizer.GetAlcoholTrendByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"{r.Year} {(r.IsAlcoholPositive ? "Positivo" : "Negativo")}: {r.Total}");
+        }
+    );
 
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Media de accidentes por día  ===");
-Console.WriteLine($"    {average:F2} accidentes por día");
-Console.ResetColor();
-stopwatch.Stop();
+    // 27
+    RunQuery(
+        "Comparativa fin de semana vs entre semana por año",
+        () => csvAnalizer.GetWeekendVsWeekdayByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"Año: {r.Year} {r.Tag} Total:{r.Total}");
+        }
+    );
 
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
+    // 28
+    RunQuery(
+        "Hora pico por año",
+        () => csvAnalizer.GetPeakHourByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"Año: {r.Year} Hora: {r.Time}:00 Total: ({r.Total})");
+        }
+    );
 
-Console.WriteLine("=================================================================\n\n");
+    // 29
+    RunQuery(
+        "Lesión más frecuente por año",
+        () => csvAnalizer.GetMostFrequentInjuryByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($" Año: {r.Year} Lesion: {r.Injury} Total: ({r.Total})");
+        }
+    );
 
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 19. ACCIDENTES CON ALCOHOL + DROGA");
-Console.WriteLine("=================================================================");
-
-stopwatch = Stopwatch.StartNew();
-
-var accidentsAlcoholAndDrugs =
-    analizerLinq.GetAccidentsWithAlcoholAndDrugsAsync();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine("  ===  Accidentes con alcohol + droga  ===");
-Console.WriteLine($"    Total: {accidentsAlcoholAndDrugs} accidentes");
-Console.ResetColor();
-
-stopwatch.Stop();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-
-Console.WriteLine("=================================================================\n\n");
-
-service.ClearData();
-
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 20. RANGOS DE EDAD MÁS VULNERABLES");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var vulnerableAgeGroups = analizerLinq.GetMostVulnerableAgeRangesAsync();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine("  ===  Rangos de edad más vulnerables  ===");
-
-foreach (var g in vulnerableAgeGroups)
-{
-    Console.WriteLine($"    {g.Range}: {g.Total} accidentes totales.");
-}
-
-
-Console.ResetColor();
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 21. DISTRITOS CON MÁS POSITIVOS EN ALCOHOL");
-Console.WriteLine("=================================================================");
-
-stopwatch = Stopwatch.StartNew();
-var districtsAlcohol =
-    analizerLinq.GetDistrictsWithMostAlcoholPositivesAsync();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine("  ===  Distritos con más positivos en alcohol  ===");
-
-foreach (var district in districtsAlcohol)
-{
-    Console.WriteLine($"    {district.District}: {district.Total} positivos");
-}
-
-Console.ResetColor();
-
-stopwatch.Stop();
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-
-Console.WriteLine("=================================================================\n\n");
-
-service.ClearData();
-
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("              22. ACCIDENTES POR CÓDIGO DE DISTRITO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var PerDistricId = analizerLinq.GetAccidentsByDistrictCodeAsync();
+    // 30
+    RunQuery(
+        "Evolución de peatones por año",
+        () => csvAnalizer.GetPedestrianTrendByYearAsync(),
+        result =>
+        {
+            foreach (var r in result)
+                Console.WriteLine($"   {r.Year}: {r.Total}");
+        }
+    );
     
-
-foreach (var d in PerDistricId)
-{
-    Console.WriteLine($"  === {d.District.Name}: {d.District.Code} ===");
-    UtilLinq.Print(d.Accidents);
-}
-Console.ResetColor();
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  23.  ACCIDENTES POR AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var accidentsPerYear = analizerLinq.GetAccidentsByYearAsync();
     
-Console.ForegroundColor = ConsoleColor.Yellow;
-
-Console.WriteLine("   ===  Accidentes por año  ====");
-foreach (var year in accidentsPerYear)
-{
-    Console.WriteLine($"Año {year.Year}: {year.Total}");
-}
-Console.ResetColor();
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 24. EVOLUCIÓN MENSUAL CON LOS AÑOS");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var anualChange = analizerLinq.GetMonthlyEvolutionByYearAsync();
-
-var lastMonth = 0;
-foreach (var month in anualChange)
-{
-    string porcentajeTexto = lastMonth > 0 
-        ? (((double)(month.Total - lastMonth) / lastMonth) * 100).ToString("f2") + "%" 
-        : "N/A"; 
-
-    Console.WriteLine($"Mes: {month.Month}/{month.Year} - Total: {month.Total} - Porcentaje: {porcentajeTexto}");
     
-    lastMonth = month.Total;
-}
-
-
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.ResetColor();
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("             25. DISTRITO CON MÁS ACCIDENTES POR AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var DistrictMoreAccidentPerYear = analizerLinq.GetDistrictWithMostAccidentsByYearAsync();
-Console.ForegroundColor = ConsoleColor.Yellow;
-foreach (var district in DistrictMoreAccidentPerYear)
-{
-    Console.WriteLine($"Año: {district.Year} Distrito: {district.Name} Total: {district.Total}");
-}
-
-Console.ResetColor();
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("               26. TENDENCIA DE ALCOHOL POR AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var AlcoholChange = analizerLinq.GetAlcoholTrendByYearAsync();
-
-var lastYear = 0;
-foreach (var year in AlcoholChange)
-{
-    string porcentajeTexto = lastYear > 0 
-        ? (((double)(year.Total - lastYear) / lastYear) * 100).ToString("f2") + "%" 
-        : "N/A"; 
-
-    Console.WriteLine($"Año: {year.Year} - Total: {year.Total} - Porcentaje: {porcentajeTexto}");
     
-    lastYear = year.Total;
+    stopwatchAnalizer.Stop();
+    times[anzInder, 30] = stopwatchAnalizer.ElapsedMilliseconds;
+    anzInder++;
 }
 
+Console.WriteLine("\n--- Comparativa final ---");
 
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.ResetColor();
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("            27. DÍA DE SEMANA VS FIN DE SEMANA POR AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var dayVsEndPerYear = analizerLinq.GetWeekendVsWeekdayByYearAsync();
-
-var totalPerYear = dayVsEndPerYear
-    .GroupBy(g => g.Year)
-    .ToDictionary(g => g.Key, g => g.Sum(x => x.Total));
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Días de semana vs fines de semana por año  ===");
-foreach (var d in dayVsEndPerYear)
+for (var i = 0; i < csvAnalizers.Length; i++)
 {
-    int totalYear = totalPerYear[d.Year];
-    double porcentaje = ((double)d.Total / totalYear) * 100;
+    var tiempos = Enumerable.Range(0, 30)
+        .Select(x => times[i, x])
+        .ToList();
 
-    Console.WriteLine($"{d.Year} - {d.Total}: {d.Total} ({porcentaje:f2}%)");
+    Console.WriteLine($"\n{csvAnalizers[i].name}");
+    Console.WriteLine($"Tiempo total: {times[i, 30]} ms");
+    Console.WriteLine($"Tiempo medio: {tiempos.Average():F2} ms");
+    Console.WriteLine($"Más rápido: {tiempos.Min()} ms");
+    Console.WriteLine($"Más lento: {tiempos.Max()} ms");
 }
-
-Console.ResetColor();
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                  28. HORA PICO POR AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var HourPerYear = analizerLinq.GetPeakHourByYearAsync();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Horas picos  ===");
-foreach (var h in HourPerYear)
-{
-    Console.WriteLine($"{h.Year}: hora {h.Time}, accidentes {h.Total}");
-}
-
-Console.ResetColor();
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 29. LESION MÁS FRECUENTE CADA AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var injurySeverityPerYear = analizerLinq.GetMostFrequentInjuryByYearAsync();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"  ===  Lesión más frecuente por año  ===");
-foreach (var i in injurySeverityPerYear)
-{
-    Console.WriteLine($"{i.Year}: tipo {i.Injury}, accidentes {i.Total}");
-}
-
-Console.ResetColor();
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-service.ClearData();
-
-Console.WriteLine("=================================================================");
-Console.WriteLine("                30. TENDENCIA DE PEATONES POR AÑO");
-Console.WriteLine("=================================================================");
-stopwatch = Stopwatch.StartNew();
-
-
-var PedestrianTrendByYear = analizerLinq.GetPedestrianTrendByYearAsync();
-
-var lastYear2 = 0;
-foreach (var y in PedestrianTrendByYear)
-{
-    var percentage = lastYear2 > 0
-        ? ((double)(y.Total - lastYear2) / lastYear2) * 100
-        : 0;
-
-    Console.WriteLine($"{y.Year}: Total {y.Total} Evolución {percentage:F2}%");
-    lastYear2 = y.Total;
-}
-Console.ResetColor();
-
-stopwatch.Stop();
-Console.ForegroundColor = ConsoleColor.Yellow;
-Console.WriteLine($"Tiempo de ejecución en ms: {stopwatch.ElapsedMilliseconds}");
-Console.ResetColor();
-Console.WriteLine("=================================================================\n\n");
-*/
-///
-/// Final LINQ
-///
-
-IDataframeAccidentAnalizer dataframeAnalizer = provider.GetRequiredService<IDataframeAccidentAnalizer>();
-Console.WriteLine("=================================================================");
-Console.WriteLine("                 1. TOTAL DE ACCIDENTES");
-Console.WriteLine("=================================================================");
-
-await dataframeAnalizer.LoadData();
-
-stopwatch = Stopwatch.StartNew();
-
-var total = dataframeAnalizer.GetTotalAccidentsAsync();
-
-Console.WriteLine($"Total de accidentes: {total}");
-
-stopwatch.Stop();
-Console.WriteLine($"Tiempo: {stopwatch.ElapsedMilliseconds} ms");

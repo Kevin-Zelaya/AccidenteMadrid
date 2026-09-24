@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c+gjCLNkIXE=",
+  "dgSpecHash": "Q33VP/aJbe4=",
   "success": true,
   "projectFilePath": "D:\\DAW\\PrimerTrimestre\\ES\\Clase\\AccidenteMadrid\\AccidentesDeMadrid\\AccicdentesDeMadridTest\\AccicdentesDeMadridTest.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\kenrr\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\kenrr\\.nuget\\packages\\csharpfunctionalextensions\\3.7.0\\csharpfunctionalextensions.3.7.0.nupkg.sha512",
     "C:\\Users\\kenrr\\.nuget\\packages\\csvhelper\\33.1.0\\csvhelper.33.1.0.nupkg.sha512",
+    "C:\\Users\\kenrr\\.nuget\\packages\\deedle\\8.1.0\\deedle.8.1.0.nupkg.sha512",
+    "C:\\Users\\kenrr\\.nuget\\packages\\fsharp.core\\10.1.201\\fsharp.core.10.1.201.nupkg.sha512",
     "C:\\Users\\kenrr\\.nuget\\packages\\microsoft.applicationinsights\\2.22.0\\microsoft.applicationinsights.2.22.0.nupkg.sha512",
     "C:\\Users\\kenrr\\.nuget\\packages\\microsoft.codecoverage\\17.14.0\\microsoft.codecoverage.17.14.0.nupkg.sha512",
     "C:\\Users\\kenrr\\.nuget\\packages\\microsoft.data.analysis\\0.23.0\\microsoft.data.analysis.0.23.0.nupkg.sha512",

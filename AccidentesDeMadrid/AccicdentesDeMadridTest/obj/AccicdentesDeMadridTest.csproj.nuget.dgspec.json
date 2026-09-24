@@ -50,6 +50,10 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Deedle": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.14.0, )"
@@ -414,6 +418,10 @@
             "CsvHelper": {
               "target": "Package",
               "version": "[33.1.0, )"
+            },
+            "Deedle": {
+              "target": "Package",
+              "version": "[8.1.0, )"
             },
             "Microsoft.Data.Analysis": {
               "target": "Package",

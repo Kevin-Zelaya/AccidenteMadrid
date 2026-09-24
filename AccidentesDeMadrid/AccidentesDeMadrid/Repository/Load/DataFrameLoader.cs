@@ -1,8 +1,10 @@
 ﻿using System.Globalization;
+using AccidentesDeMadrid.Dto;
 using AccidentesDeMadrid.Entity;
 using AccidentesDeMadrid.Interfaces;
 using CsvHelper;
 using CsvHelper.Configuration;
+using Deedle;
 using Microsoft.Data.Analysis;
 using Microsoft.Extensions.Logging;
 
@@ -10,123 +12,81 @@ namespace AccidentesDeMadrid.Repository.Load;
 
 public class DataframeLoader : IDataframeLoader, ITransientService
 {
-    private readonly ILogger<DataframeLoader> _logger;
+    private readonly ILogger<IDataframeLoader> _logger;
 
-    public DataframeLoader(ILogger<DataframeLoader> logger)
+
+    public DataframeLoader(ILogger<IDataframeLoader> logger)
     {
         _logger = logger;
     }
 
-    public async Task<DataFrame> LoadCsv(IEnumerable<string> paths)
+    public async Task<Frame<int, string>> LoadCsv(IEnumerable<string> paths)
     {
-        var tasks = paths.Select(LoadFile);
+        var tasks = paths.Select(LoadFile); // por cada ruta obtiene la lista de filas
 
-        var results = await Task.WhenAll(tasks);
+        var results = await Task.WhenAll(tasks); // Espera a que todas se lean
 
-        var numExpediente = new StringDataFrameColumn("num_expediente");
-        var fecha = new StringDataFrameColumn("fecha");
-        var hora = new StringDataFrameColumn("hora");
-        var localizacion = new StringDataFrameColumn("localizacion");
-        var numero = new StringDataFrameColumn("numero");
-        var codDistrito = new StringDataFrameColumn("cod_distrito");
-        var distrito = new StringDataFrameColumn("distrito");
-        var tipoAccidente = new StringDataFrameColumn("tipo_accidente");
-        var estadoMeteorologico = new StringDataFrameColumn("estado_meteorológico");
-        var tipoVehiculo = new StringDataFrameColumn("tipo_vehiculo");
-        var tipoPersona = new StringDataFrameColumn("tipo_persona");
-        var rangoEdad = new StringDataFrameColumn("rango_edad");
-        var sexo = new StringDataFrameColumn("sexo");
-        var codLesividad = new StringDataFrameColumn("cod_lesividad");
-        var lesividad = new StringDataFrameColumn("lesividad");
-        var coordenadaXUtm = new StringDataFrameColumn("coordenada_x_utm");
-        var coordenadaYUtm = new StringDataFrameColumn("coordenada_y_utm");
-        var positivaAlcohol = new StringDataFrameColumn("positiva_alcohol");
-        var positivaDroga = new StringDataFrameColumn("positiva_droga");
+        var rows = results // Los junta en una misma colección
+            .SelectMany(x => x)
+            .ToList();
 
-        foreach (var rows in results)
-        {
-            foreach (var row in rows)
-            {
-                numExpediente.Append(row[0]);
-                fecha.Append(row[1]);
-                hora.Append(row[2]);
-                localizacion.Append(row[3]);
-                numero.Append(row[4]);
-                codDistrito.Append(row[5]);
-                distrito.Append(row[6]);
-                tipoAccidente.Append(row[7]);
-                estadoMeteorologico.Append(row[8]);
-                tipoVehiculo.Append(row[9]);
-                tipoPersona.Append(row[10]);
-                rangoEdad.Append(row[11]);
-                sexo.Append(row[12]);
-                codLesividad.Append(row[13]);
-                lesividad.Append(row[14]);
-                coordenadaXUtm.Append(row[15]);
-                coordenadaYUtm.Append(row[16]);
-                positivaAlcohol.Append(row[17]);
-                positivaDroga.Append(row[18]);
-            }
-        }
+        return Frame.FromRecords(rows); // los retorna en un solo  dataframe
 
-        return new DataFrame(
-            numExpediente,
-            fecha,
-            hora,
-            localizacion,
-            numero,
-            codDistrito,
-            distrito,
-            tipoAccidente,
-            estadoMeteorologico,
-            tipoVehiculo,
-            tipoPersona,
-            rangoEdad,
-            sexo,
-            codLesividad,
-            lesividad,
-            coordenadaXUtm,
-            coordenadaYUtm,
-            positivaAlcohol,
-            positivaDroga
-        );
     }
 
-    private async Task<List<string[]>> LoadFile(string path)
+    private async Task<List<AccidentCsvRow>> LoadFile(string path)
     {
         if (!Path.Exists(path))
         {
-            throw new FileNotFoundException(
-                "No se pudo encontrar el archivo",
-                path);
+            _logger.LogError("[DATAFRAME-LOADER] No se ha encontrado el archivo: {path}", path);
+            throw new FileNotFoundException($"No se encontro el archivo {path}");
         }
 
-        var rows = new List<string[]>();
+        var rows = new List<AccidentCsvRow>();
 
         using var reader = new StreamReader(path);
-
-        var config = new CsvConfiguration(
-            CultureInfo.InvariantCulture)
+        var config = new CsvConfiguration(CultureInfo.InvariantCulture)
         {
-            Delimiter = ";"
+            Delimiter = ";",
         };
 
         using var csv = new CsvReader(reader, config);
 
         await csv.ReadAsync();
+        csv.ReadHeader();
 
         while (await csv.ReadAsync())
         {
-            var row = new string[19];
-
-            for (int i = 0; i < 19; i++)
+            rows.Add(new AccidentCsvRow // Obtener de cada linea cada columna y guardar el conjunto en una lista como objeto
             {
-                row[i] = csv.GetField<string>(i);
-            }
-
-            rows.Add(row);
+                NumExpediente = csv.GetField<string>(0),
+                Fecha = DateTime.ParseExact(
+                    csv.GetField<string>(1),
+                    "dd/MM/yyyy",
+                    CultureInfo.InvariantCulture),
+                Hora = TimeSpan.Parse(
+                    csv.GetField<string>(2),
+                    CultureInfo.InvariantCulture),
+                Localizacion = csv.GetField<string>(3),
+                Numero = csv.GetField<string>(4),
+                CodDistrito = csv.GetField<string>(5),
+                Distrito = csv.GetField<string>(6),
+                TipoAccidente = csv.GetField<string>(7),
+                EstadoMeteorologico = csv.GetField<string>(8),
+                TipoVehiculo = csv.GetField<string>(9),
+                TipoPersona = csv.GetField<string>(10),
+                RangoEdad = csv.GetField<string>(11),
+                Sexo = csv.GetField<string>(12),
+                CodLesividad = csv.GetField<string>(13),
+                Lesividad = csv.GetField<string>(14),
+                CoordenadaXUtm = csv.GetField<string>(15),
+                CoordenadaYUtm = csv.GetField<string>(16),
+                PositivaAlcohol = csv.GetField<string>(17),
+                PositivaDroga = csv.GetField<string>(18)
+            });
         }
 
         return rows;
     }
+
 }
